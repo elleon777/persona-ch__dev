@@ -1,0 +1,23 @@
+// В этом файле должны быть стили для БЭМ-блока dropdown, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.dropdown {
+  $block-name: &; // #{$block-name}__element
+  &__caption {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  }
+  &__content {
+    display: none;
+  }
+}

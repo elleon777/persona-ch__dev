@@ -1,0 +1,429 @@
+// В этом файле должны быть стили для БЭМ-блока mainPage, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.main-page {
+  $block-name: &; // #{$block-name}__element
+  background: #0b133d;
+  @media (min-width: 992px) {
+    height: calc((var(--vh, 1vh) * 100));
+    overflow: hidden;
+  }
+  &__title {
+    @include h1;
+    color: $f-white !important;
+
+    @media (max-width: 1366px) {
+      margin-bottom: 24px;
+    }
+    &.fadeInUpHide {
+      animation: fadeInUpHide 0.5s both !important;
+      animation-delay: 0.4s;
+    }
+  }
+  &__link {
+    margin-top: 32px;
+    &.fadeInUpHide {
+      animation: fadeInUpHide 0.5s both !important;
+      animation-delay: 0.5s;
+    }
+  }
+  &__wrapper {
+    width: 100%;
+    // &:nth-child(1) {
+    //   .main-page__left {
+    //     margin-bottom: 40px;
+    //     @media (min-width: 1366px) {89
+    //       margin-bottom: 62px;
+    //     }
+    //   }
+    // }
+    @media (min-width: 1921px) {
+      .container {
+        position: relative;
+      }
+    }
+    @media (min-width: 992px) {
+      background-image: none !important;
+    }
+    @media (max-width: 991px) {
+      position: relative;
+      & > .container {
+        gap: 0;
+        padding: 0;
+      }
+      &:first-child {
+        height: calc((var(--vh, 1vh) * 100));
+        #{$block-name}__left {
+          height: 100%;
+        }
+      }
+    }
+    &:first-child {
+      #{$block-name}__left {
+        .link {
+          @include s1;
+          display: block;
+        }
+      }
+    }
+    &:last-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @include blur(20px);
+    }
+    .slide-inner {
+      width: 100%;
+      height: calc((var(--vh, 1vh) * 100));
+    }
+    &.swiper-slide-active {
+      #{$block-name}__title {
+        animation: fadeInUp 0.5s both;
+        animation-delay: 0.4s;
+        animation-timing-function: $transitionTime;
+      }
+      #{$block-name}__link {
+        animation: fadeInUp 0.5s both;
+        animation-delay: 0.5s;
+        animation-timing-function: $transitionTime;
+      }
+      #{$block-name}__right-item {
+        animation: fadeInUp 0.5s both;
+        animation-delay: 0.4s;
+        animation-timing-function: $transitionTime;
+      }
+    }
+  }
+  &__inner {
+    @include container;
+    grid-template-rows: 1fr auto;
+    grid-gap: 0;
+    padding: 0;
+    @media (min-width: 1024px) {
+      grid-gap: 0;
+    }
+  }
+  &__left {
+    grid-column: 7 span;
+    align-self: end;
+    @media (min-width: 992px) {
+      background-image: none !important;
+    }
+    @media (max-width: 991px) {
+      position: sticky;
+      top: 0;
+      grid-column: 8 span;
+      height: 600px;
+      clip-path: inset(0 0 0 0);
+      margin-bottom: 0;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 33px;
+    }
+    @media (max-width: 480px) {
+      height: 400px;
+      padding: 16px;
+    }
+    .link {
+      max-width: 550px;
+      align-items: center;
+      @include s2;
+      svg path {
+        fill: $f-white;
+      }
+      &-text {
+        color: $f-white !important;
+      }
+      &:hover {
+        svg path {
+          fill: $f-primary;
+        }
+        .link-text {
+          color: $f-primary !important;
+        }
+      }
+    }
+  }
+  &__right {
+    right: 0;
+    width: 100%;
+    bottom: 0;
+    align-self: end;
+    @include blur(10px);
+    display: grid;
+    grid-template-columns: 1fr;
+    animation: fadeIn 0.5s both 0.5s $transitionTime;
+
+    max-width: none;
+    position: static;
+    grid-column: 1 / 8 span;
+    @media (min-width: 1600px) {
+      max-width: 650px;
+    }
+    @media (min-width: 1366px) {
+      max-width: 550px;
+    }
+    @media (min-width: 1024px) {
+      max-width: 400px;
+    }
+    @media (min-width: 991px) {
+      max-width: 360px;
+      position: absolute;
+      grid-column: -4 / 4 span;
+    }
+    &.fadeInHide {
+      animation: fadeInHide 0.5s both !important;
+      animation-delay: 0.5s;
+    }
+    &--full {
+      @media (min-width: 992px) {
+        height: 100%;
+        padding-top: 114px;
+      }
+      .main-page__right-item:not(:last-child) {
+        position: relative;
+        &::before {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 1px;
+          background: #8ca5cb99;
+          width: 100%;
+          @media (min-width: 1366px) {
+            width: calc(100% - 80px * 2);
+          }
+          @media (min-width: 991px) {
+            width: calc(100% - 40px * 2);
+          }
+        }
+        .link {
+          @media (min-width: 992px) {
+            &:hover {
+              .link-text {
+                color: $f-primary;
+              }
+              svg {
+                path {
+                  fill: $f-primary;
+                }
+              }
+            }
+          }
+          .link-text {
+            color: $f-white;
+          }
+          svg {
+            path {
+              fill: $f-white;
+            }
+          }
+        }
+      }
+    }
+    &--row {
+      @media (max-width: 991px) and (min-width: 481px) {
+        display: flex;
+        padding: 45px 24px;
+        width: auto;
+        #{$block-name}__right-item {
+          align-items: start;
+          padding: 0;
+          gap: 0 24px;
+        }
+        #{$block-name}__right-title {
+        }
+        & > *::before {
+          content: none !important;
+        }
+      }
+    }
+    &-item {
+      padding: 16px;
+      &:only-child {
+        padding: 16px;
+        @media (min-width: 992px) {
+          transition: 0.3s;
+          &:hover {
+            svg {
+              transform: translateX(8px) rotate(180deg);
+            }
+          }
+        }
+      }
+
+      img {
+        width: 70px;
+        height: 70px;
+        @media (max-width: 480px) {
+          width: 56px;
+          height: 56px;
+          grid-row: 2 span;
+        }
+      }
+      @media (min-width: 992px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      @media (min-width: 1366px) {
+        padding: 0 80px;
+        &:only-child {
+          padding: 62px 80px;
+        }
+      }
+
+      @media (min-width: 991px) {
+        padding: 0 40px;
+        &:only-child {
+          padding: 40px;
+        }
+      }
+      @media (max-width: 991px) and (min-width: 481px) {
+        &:not(a) {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          grid-template-rows: 1fr 1fr;
+          align-items: center;
+        }
+        &:not(a) > .main-page__right-number:nth-child(1) {
+          grid-column: 1;
+          grid-row: 3 span;
+          align-self: center;
+          justify-self: center;
+        }
+        &:not(a) > .main-page__right-title:nth-child(2) {
+          grid-column: 2;
+          grid-row: 2 span;
+        }
+        &:not(a) > *:nth-child(3) {
+          grid-column: 2;
+        }
+      }
+      @media (max-width: 480px) {
+        &:not(a):not(:first-child) {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+      }
+      &--inner {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        grid-gap: 0 16px;
+        grid-row: 2 span;
+        @media (max-width: 991px) and (min-width: 481px) {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          height: 100%;
+        }
+        @media (max-width: 991px) {
+        }
+        @media (max-width: 480px) {
+          grid-template-columns: auto 1fr;
+          grid-template-rows: auto 1fr;
+          grid-gap: 0 24px;
+        }
+        #{$block-name} {
+          &__right {
+            &-title {
+              grid-column: 2;
+              align-self: center;
+            }
+            &-text {
+              grid-column: 1 / 2 span;
+              @media (max-width: 480px) {
+                grid-column: 2;
+              }
+            }
+          }
+        }
+      }
+      .link {
+        width: 100%;
+        justify-content: space-between;
+        text-align: left;
+        &--refresh {
+          margin-top: 16px;
+          @media (max-width: 991px) {
+            margin-top: 8px;
+          }
+          .link-text {
+            color: $f-primary;
+          }
+          svg path {
+            fill: $f-primary;
+          }
+          @media (min-width: 992px) {
+            &:hover {
+              .link-text {
+                color: $f-hover;
+              }
+              svg path {
+                fill: $f-hover;
+              }
+            }
+          }
+        }
+        &-text {
+          @include p2;
+        }
+        svg path {
+          fill: $f-primary;
+        }
+      }
+    }
+    &-number {
+      @include h1;
+      color: $f-white;
+      display: inline-flex;
+      align-items: baseline;
+      span {
+        @include font(40px, 60px, 300);
+        @media (min-width: 1600px) {
+          @include font(44px, 60px, 300);
+        }
+        color: $f-white;
+      }
+      img {
+        margin-bottom: 8px;
+      }
+      @media (max-width: 991px) {
+        @include font(60px, 60px, 300);
+      }
+    }
+    &-title {
+      @include s2;
+      color: $f-white !important;
+    }
+    &-text {
+      @include p4;
+      color: $f-white !important;
+    }
+  }
+  &__mobile-bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    @media (min-width: 991px) {
+      display: none;
+    }
+    img {
+      width: 100%;
+      // height: 100%;
+      height: calc(var(--vh, 1vh) * 100);
+      height: calc((var(--vh, 1vh) * 100) + 80px);
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+extends ../pug/template-dark.pug
+
+block meta
+  title Хирурги
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block detail-top
+  .detail__top(style="background-image: url('img/mainPage1-mobile.jpg')")
+    .detail__bg
+      video.video-bg(autoplay loop muted) 
+        source(src="img/mainPage1.mp4" type="video/mp4")
+    .detail__top-inner
+      .detail__title
+        h1.h1 Невероятные хирурги, ответственные за результат
+block aside
+  .detail__aside.detail__aside--filter
+    span Показывать:
+    button.filter-popup--open Все хирурги
+  +filter-popup(["Все хирурги","Гинекологи","Пластические хирурги","Общие хирурги","Травматологи","Флебологи","Урологи", "Отоларингологи"])(style="left: 0;")
+block content
+  .detail__doctor
+    a.detail__doctor-item(href="/surgeon-detail.html")
+      .detail__doctor-img
+        img(src="img/doctor1.png", alt="")
+      .detail__doctor-title Круглов Аркадий Борисович
+      .detail__doctor-desc Главный врач центра пластической хирургии и эндоскопии «Персона»
+    a.detail__doctor-item(href="/surgeon-detail.html")
+      .detail__doctor-img
+        img(src="img/doctor2.png", alt="")
+      .detail__doctor-title Круглов Аркадий Борисович
+      .detail__doctor-desc Главный врач центра пластической хирургии и эндоскопии «Персона»
+    a.detail__doctor-item(href="/surgeon-detail.html")
+      .detail__doctor-img
+        img(src="img/doctor3.png", alt="")
+      .detail__doctor-title Круглов Аркадий Борисович
+      .detail__doctor-desc Главный врач центра пластической хирургии и эндоскопии «Персона»

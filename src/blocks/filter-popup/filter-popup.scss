@@ -1,0 +1,103 @@
+// В этом файле должны быть стили для БЭМ-блока filter-popup, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.filter-popup {
+  $block-name: &; // #{$block-name}__element
+  position: fixed;
+  top: 0;
+  display: none;
+  height: calc((var(--vh, 1vh) * 100));
+  width: 100%;
+  max-width: 700px;
+  padding: 24px 16px;
+  background-color: $ui-popup;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: 0.4s;
+  @media (min-width: 600px) {
+    padding: 40px;
+  }
+  @media (max-width: 991px) {
+    max-width: none;
+  }
+  &--rightShow {
+    animation: fadeRightLeftIn 0.4s both cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  &--rightHide {
+    animation: fadeRightLeftOut 0.4s both cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  &--leftShow {
+    animation: fadeLeftRightIn 0.4s both cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  &--leftHide {
+    animation: fadeLeftRightOut 0.4s both cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    svg {
+      --iconSize: 24px;
+      width: var(--iconSize);
+      height: var(--iconSize);
+      @media (min-width: 1366px) {
+        --iconSize: 32px;
+      }
+    }
+  }
+  &__title {
+    @include h2;
+    color: $f-white;
+    max-width: 150px;
+    margin-bottom: 45px;
+  }
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  &__item {
+    @include s2;
+    color: $f-white;
+    cursor: pointer;
+    position: relative;
+    padding-left: 56px;
+    &.selected {
+      color: $f-primary;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      border: 1px solid $ui-white;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &.selected:before {
+      border: 1px solid $ui-primary;
+    }
+    &.selected:after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      background: $ui-primary;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

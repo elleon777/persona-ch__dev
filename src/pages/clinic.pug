@@ -1,0 +1,89 @@
+extends ../pug/lending.pug
+
+block meta
+  title Клиника
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block banner
+  .lending__banner.sticky(style="background-image: url('img/clinic.png')")
+    h1 Современное высоко-технологичное оснащение
+block content
+  h2.observer Сеть клиник «Персона» и «Прозрение» работает <span>более 25 лет</span> и входит в ТОП-100 лучших частных многопрофильных клиник России
+  ul
+    li.observer Топ-50 крупнейших многопрофильных клиник России (по версии экспертного журнала VADEMECUM)
+    li.observer Топ-100 работодателей России (средние компании, рейтинг работодателей России 2020 hh.ru)
+    li.observer Топ-10 лучших работодателей на Премии «Работодатель года» 2021
+  .lending-clinic__number.observer
+    video(loop muted autoplay) 
+      source(src="img/mainPage2.mp4" type="video/mp4")
+    .lending-clinic__number-text
+      span 8 300
+  p.h1.observer операций за все время
+  p.p3.observer С каждым клиентом прорабатываем индивидуальную программу лечения и профилактики. Все лечения и обследования проводятся в строгом соответствии стандартам оказания медицинской помощи. Для нас ценно время наших клиентов, поэтому весь лечебно-диагностический процесс будет организован в кратчайшие сроки.
+  +link("Все операции", true,"right, observer")
+  .lending-clinic__mid-number.observer <span>4</span> <p>современные операционные</p>     
+  .lending-clinic__images
+    .lending-clinic__images-left.rellax(data-rellax-speed="0")
+      .lending-clinic__images-block__img
+        img(src="img/clinic2.png", alt="")
+      .lending-clinic__images-block__img
+        img(src="img/clinic1.png", alt="")
+    .lending-clinic__images-right.rellax(data-rellax-speed="0.5")
+      .lending-clinic__images-block__img
+        img(src="img/clinic4.png", alt="")
+      .lending-clinic__images-block__img
+        img(src="img/clinic3.png", alt="")
+  p.p3.observer Мы предоставляем хирургическую помощь в формате сочетания современных методик лечения, использования высокотехнологичного оборудования ведущих мировых производителей, профессионализма сотрудников с почти домашними условиями пребывания.
+  +link("Оборудование", true,"right, observer")
+  p.h1.observer Нацеленность на быструю реабилитацию
+  .lending-clinic__wrapper
+    .lending-clinic__item.observer
+      .lending-clinic__icon
+        img(src="img/anesthesia-black.svg", alt="")
+      h3.lending-clinic__title Современная анестезиология
+      .lending-clinic__desc Персонал окажет вам профессиональную помощь, используя новейшие методы диагностики и лечения
+    .lending-clinic__item.observer
+      .lending-clinic__icon
+        img(src="img/cozy-black.svg", alt="")
+      h3.lending-clinic__title Уют и внимание
+      .lending-clinic__desc Пребывание в комфортных условиях под круглосуточным медицинским наблюдением дежурного врача и среднего медицинского персонала.
+    .lending-clinic__item.observer
+      .lending-clinic__icon
+        img(src="img/recovery-black.svg", alt="")
+      h3.lending-clinic__title Fast-track
+      .lending-clinic__desc Меньший болевой синдром, низкий риск осложнений, короткий срок реабилитации, быстрое восстановление всех функций организма.
+  p.p2.observer В Центре хирургии и эндоскопии «Персона» внедрена стратегия оперативного лечения пациентов Fast Track, которая значительно ускоряет послеоперационное восстановление пациентов.
+  +link("Подробнее про быструю реабилитацию", true,"right, observer")
+  .lending-clinic__licence
+    .lending-clinic__licence-content
+      .lending-clinic__licence-title Все операции только в рамках лицензии
+      .lending-clinic__licence-desc Центр хирургии и эндоскопии «Персона» оказывает свои услуги на основании всех необходимых лицензий, выданных Министерством Здравоохранения РФ
+      +link("Все лицензии", true,"right, observer")
+      +link("Юридическая информация", true,"right, observer")
+    .lending-clinic__licence-img
+      img(src="img/emblem-health.png", alt="")
+  .lending__template
+    .lending__template-title.observer
+      .h1 Что говорят <br> наши пациенты
+      .lending__template-desc Мы бережно храним все отзывы <br> и упоминания о нашей работе
+    .lending__template-bottom
+      .lending__template-aside
+        +link("Оставить отзыв", true,"right")
+      .lending__template-content
+        .detail__reviews
+          +review()
+          +review()
+        .detail__link-all
+          +link("Все отзывы", true, "button, right")
+block see-also
+  span Смотрите также
+  a(href="/recovery.html").see-also__title Нацеленность на быструю реабилитацию
+    
+//- block footer
+//-   p footer
+
+//- block prepend page-bottom
+//-   <script src=""></script>

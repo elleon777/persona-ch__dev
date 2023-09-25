@@ -1,0 +1,37 @@
+mixin link-desc(title, type, mods)
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' link--' + modsList[i].trim();
+      }
+    }
+
+
+  a(class=['link-desc', allMods] href="#")
+    if type == true
+      .link-text
+        .link-text__title= title
+        .link-text__desc
+          block
+      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z"/>
+      </svg>
+    else
+      .link-text
+        .link-text__title
+          span= title
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z"/>
+          </svg>
+        .link-text__desc
+          block
+    
+      
+       
+      
+                    
+
+

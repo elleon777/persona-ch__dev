@@ -1,0 +1,145 @@
+// В этом файле должны быть стили для БЭМ-блока form-enroll, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.form-enroll {
+  $block-name: &; // #{$block-name}__element
+  margin-top: 114px;
+  padding-top: 24px;
+  flex-grow: 1;
+  z-index: 999;
+  // max-height: 559px;
+  // @media (max-width: 1600px) {
+  //   max-height: 419px;
+  // }
+  @media (max-width: 991px) {
+    margin-top: 0;
+    padding: 24px 0 44px 0;
+    background-color: rgba(23, 55, 85, 0.7);
+  }
+  &__container {
+    @include container;
+  }
+  &__text {
+    grid-column: 8 span;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 1599px) and (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+    @media (min-width: 991px) {
+      grid-column: 12 span;
+      grid-row: 1;
+    }
+    @media (min-width: 1600px) {
+      grid-column: 3 span;
+    }
+  }
+  &__title {
+    @include h2;
+    position: relative;
+    color: $f-white !important;
+    @media (min-width: 1024px) {
+      grid-column: 1 / 6 span;
+    }
+    @media (min-width: 1280px) {
+      grid-column: 1 / 5 span;
+    }
+    @media (max-width: 1366px) {
+      max-width: 465px;
+    }
+    @media (max-width: 991px) {
+      @include font(20px, 26px, 400);
+      margin-bottom: 24px;
+    }
+  }
+  &__desc {
+    color: $f-white !important;
+    @include s2;
+    @media (min-width: 1024px) {
+      grid-column: 8 / 5 span;
+    }
+    @media (min-width: 1280px) {
+      grid-column: 9 / 4 span;
+    }
+    @media (max-width: 1600px) {
+      @include font(24px, 32px, 400);
+    }
+    @media (max-width: 1367px) {
+      @include font(20px, 28px, 400);
+    }
+    @media (max-width: 1366px) {
+      max-width: 420px;
+    }
+    @media (max-width: 991px) {
+      @include font(16px, 20px, 400);
+    }
+    @media (min-width: 1336px) {
+      margin-top: 24px;
+    }
+  }
+  .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr 88px;
+    gap: 5px;
+    grid-column: 8 span;
+    margin-top: 24px;
+    grid-row: 2;
+    @media (min-width: 991px) {
+      grid-column: 12 span;
+      margin-top: 0;
+    }
+    @media (min-width: 1600px) {
+      grid-row: 1;
+      grid-column: 4 / 9 span;
+    }
+    &__name {
+      @media (max-width: 991px) {
+        grid-column: 8 span;
+        grid-row: 1;
+      }
+    }
+    &__tel {
+      @media (max-width: 991px) {
+        grid-column: 8 span;
+        grid-row: 2;
+      }
+    }
+    &__textarea {
+      grid-column: 2;
+      grid-row: 1 / 2 span;
+      // align-self: center;
+      overflow: hidden;
+      resize: none;
+      &::placeholder {
+        height: 100%;
+        transform: translateY(calc(50% - 15px));
+      }
+      @media (max-width: 991px) {
+        grid-column: 8 span;
+        grid-row: 3;
+      }
+    }
+    &-checkbox {
+      @media (max-width: 991px) {
+        grid-column: 8 span;
+      }
+    }
+    &-send {
+      @media (max-width: 991px) {
+        grid-column: 8 span;
+      }
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    @media (max-width: 991px) {
+      grid-column: 8 span;
+      grid-row: 4;
+    }
+  }
+}

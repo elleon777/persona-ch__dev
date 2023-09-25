@@ -1,0 +1,19 @@
+// В этом файле должны быть стили для БЭМ-блока select-filter, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.select-filter {
+  $block-name: &; // #{$block-name}__element
+  span {
+    @include s2;
+  }
+  button {
+    position: relative;
+    @include s1;
+    color: $f-primary;
+    cursor: pointer;
+    &::before {
+      @include border-dots();
+    }
+  }
+}

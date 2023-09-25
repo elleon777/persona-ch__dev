@@ -1,0 +1,8 @@
+//- Все примеси в этом файле должны начинаться c имени блока (select)
+
+mixin select(title, options)
+
+  select(data-title=title)
+    each item in options
+      option(value="")= item
+    

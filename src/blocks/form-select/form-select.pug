@@ -1,0 +1,23 @@
+//- Все примеси в этом файле должны начинаться c имени блока (form-select)
+
+mixin form-select(title, options)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +form-select('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' form-select--' + modsList[i].trim();
+      }
+    }
+
+  select(data-title=title)
+    each item in options
+      option(value="")= item

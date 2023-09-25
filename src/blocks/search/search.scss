@@ -1,0 +1,182 @@
+// В этом файле должны быть стили для БЭМ-блока search, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.search {
+  $block-name: &; // #{$block-name}__element
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include blur(20px);
+  z-index: 1000;
+  display: none;
+
+  &--show {
+    animation: fadeIn 1s both;
+  }
+  &--hide {
+    animation: fadeInHide 1s both;
+  }
+  &__wrapper {
+    @include container;
+    width: 100%;
+    margin: 85px auto 0;
+    @media (max-width: 991px) {
+      margin: 24px auto 0;
+    }
+  }
+  &__inner {
+    grid-column: 3 / 8 span;
+    @media (max-width: 991px) {
+      grid-column: 1 / 8 span;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  &__title {
+    @include h3;
+    color: $f-white;
+  }
+  &__close {
+    cursor: pointer;
+    --iconSize: 24px;
+    width: var(--iconSize);
+    height: var(--iconSize);
+    @media (min-width: 1366px) {
+      --iconSize: 32px;
+    }
+  }
+  &__input {
+    position: relative;
+    button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 16px;
+      height: 24px;
+      @media (min-width: 1024px) {
+        left: 40px;
+      }
+      svg {
+        path {
+          stroke: $ui-white !important;
+        }
+      }
+    }
+    input {
+      width: 100%;
+      background-color: $ui-input;
+      border: none;
+      @include s3;
+      color: $f-white;
+      padding: 16px 20px 16px 52px;
+      &::placeholder {
+        color: rgba(168, 195, 234, 0.5);
+      }
+      @media (min-width: 1024px) {
+        padding: 24px 40px 24px 80px;
+      }
+    }
+  }
+  &__result {
+    .tabs {
+      &__caption-inner {
+        @include h4;
+        gap: 20px;
+        margin: 56px 0 32px;
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        @media (min-width: 1024px) {
+          gap: 40px;
+        }
+        @media (max-width: 991px) {
+          margin: 24px -16px 24px;
+        }
+        li {
+          color: $f-white !important;
+          @media (max-width: 991px) {
+            &:first-child {
+              padding-left: 16px;
+            }
+            &:last-child {
+              padding-right: 16px;
+            }
+          }
+          &.active::before {
+            content: none;
+          }
+        }
+      }
+      &__content {
+        background: #f5f8ff;
+        &-block {
+          padding: 0 40px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          max-height: 64vh;
+          &::-webkit-scrollbar {
+            width: 4px;
+            padding: 5px;
+          }
+          /* Track */
+          &::-webkit-scrollbar-track {
+            background: $ui-white;
+            border-radius: 4px;
+            padding: 5px;
+          }
+
+          /* Handle */
+          &::-webkit-scrollbar-thumb {
+            background: #cfd6e6;
+            border-radius: 4px;
+          }
+          @media (max-width: 991px) {
+            padding: 0 16px;
+          }
+          .pagination {
+            margin: 0 -40px;
+            @media (max-width: 991px) {
+              margin: 0 -16px;
+            }
+          }
+        }
+        .link {
+          border-bottom: 1px solid rgba(168, 195, 234, 0.5);
+          &:hover {
+            .link-text {
+              color: $f-primary;
+            }
+            svg {
+              path {
+                fill: $f-primary;
+              }
+            }
+          }
+          &-text {
+            @include s2;
+            color: $f-black;
+          }
+        }
+        .pagination {
+          @include p2;
+          color: $f-black;
+          &__list {
+            li {
+              color: $f-black !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+//- Все примеси в этом файле должны начинаться c имени блока (tabs)
+
+mixin tabs(list, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +tabs('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' tabs--' + modsList[i].trim();
+      }
+    }
+
+  .tabs(class=allMods)&attributes(attributes)
+    .tabs__caption 
+      ul.tabs__caption-inner
+        each value, index in list
+          li= value 
+    .tabs__content
+      block
+

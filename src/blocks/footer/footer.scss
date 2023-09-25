@@ -1,0 +1,198 @@
+// В этом файле должны быть стили для БЭМ-блока footer, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.footer {
+  $block-name: &; // #{$block-name}__element
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 2;
+  &--transparent {
+    #{$block-name} {
+      &__copyright {
+        color: $f-white;
+      }
+      &__info-wrapper span {
+        color: $f-white;
+      }
+      &__dev {
+        color: $f-white;
+      }
+    }
+  }
+  &--dark {
+    background-color: $ui-dark;
+    #{$block-name} {
+      &__copyright {
+        color: $f-white;
+      }
+      &__info-wrapper span {
+        color: $f-white;
+      }
+      &__dev {
+        color: $f-white;
+      }
+    }
+  }
+  &--light {
+    background-color: $ui-light;
+    #{$block-name} {
+      &__copyright {
+        color: $f-black;
+      }
+      &__info-wrapper span {
+        color: $f-black;
+      }
+      &__dev {
+        color: $f-black;
+      }
+      &__social {
+        svg {
+          rect {
+            fill: $ui-white;
+          }
+          path {
+            fill: $ui-black;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 991px) {
+    padding-top: 20px;
+  }
+  svg {
+    margin-right: 8px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__top {
+    @include container;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+    @media (max-width: 991px) {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+      gap: 0;
+    }
+    @media (max-width: 480px) {
+    }
+  }
+  &__address {
+    grid-column: 3 span;
+    @include s4;
+    color: $f-primary !important;
+    @media (max-width: 991px) {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  }
+  &__contacts {
+    grid-column: 4 / 6 span;
+    @include s4;
+    color: $f-primary !important;
+    @media (max-width: 480px) {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    &-tel {
+      margin-right: 40px;
+      @media (max-width: 991px) {
+        margin-right: 24px;
+      }
+    }
+    &-mail {
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+  &__social {
+    grid-column: 10 / 1 span;
+    display: flex;
+    &-vk {
+      margin-right: 8px;
+    }
+    @media (max-width: 991px) {
+      margin-left: 24px;
+    }
+    @media (max-width: 480px) {
+      margin-left: 0;
+    }
+  }
+
+  &__bottom {
+    @include container;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    border-top: 1px solid rgba(168, 195, 234, 0.5);
+    width: 100%;
+    @media (max-width: 991px) {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      gap: 12px;
+    }
+  }
+  &__copyright {
+    grid-column: 2 span;
+    @include s5;
+    @media (max-width: 991px) {
+      grid-column: 3 span;
+    }
+    @media (max-width: 600px) {
+      & > br {
+        display: none;
+      }
+    }
+  }
+  &__info {
+    grid-column: 4 / 5 span;
+    @include s5;
+    @media (max-width: 991px) {
+      gap: 12px;
+    }
+    &-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: repeat(2, auto);
+      justify-content: space-between;
+      @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 481px) {
+        width: max-content;
+        a + a {
+          text-align: right;
+        }
+      }
+
+      span {
+        grid-column: 2 span;
+        opacity: 0.5;
+      }
+    }
+  }
+  &__dev {
+    @include s5;
+    grid-column: 10 / 3 span;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 991px) {
+      flex-direction: row;
+      border-top: 1px solid rgba(168, 195, 234, 0.5);
+      margin: 0 -24px;
+      padding: 12px 24px 32px;
+      flex-grow: 1;
+      gap: 24px;
+    }
+  }
+}

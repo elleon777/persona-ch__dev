@@ -1,0 +1,52 @@
+//- Все примеси в этом файле должны начинаться c имени блока (result-slider)
+
+mixin result-slider(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +result-slider('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' result-slider--' + modsList[i].trim();
+      }
+    }
+
+  .result-slider.swiper(class=allMods)&attributes(attributes)
+    .swiper-wrapper
+      .result-slide.swiper-slide
+        .result-slide__inner
+          .result-slide__caption До
+          .result-slide__img
+            img(src="img/result-before.png", alt="")
+        .result-slide__inner
+          .result-slide__caption После
+          .result-slide__img
+            img(src="img/result-after.png", alt="")
+      .result-slide.swiper-slide
+        .result-slide__inner
+          .result-slide__caption До
+          .result-slide__img
+            img(src="img/result-before.png", alt="")
+        .result-slide__inner
+          .result-slide__caption После
+          .result-slide__img
+            img(src="img/result-after.png", alt="")
+      
+    .swiper-buttons__wrapper
+      .swiper-button-prev
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z"/>
+        </svg>
+      .swiper-button-next
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z"/>
+        </svg>
+      
+

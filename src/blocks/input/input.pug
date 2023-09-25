@@ -1,0 +1,33 @@
+//- Все примеси в этом файле должны начинаться c имени блока (input)
+
+mixin input(className, type, placeholder, alert, req)
+
+  case type
+    when "textarea"
+      .input(class=className)
+        textarea.input-field(id=className required=req)
+        label.input-label(for=className)= placeholder
+        span.input-alert= alert
+    when "file"
+      .input(class=className)
+        input.input-file-field(id=className type=type)
+        label.input-file-label(for=className)
+        span.input-file-text= placeholder
+        span.input-file-limit Максимум 10 мб
+        span.input-file-icon
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_3279_34261)">
+          <path d="M8 14.5V1.5" stroke="white" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+          <path d="M14.5 7.99995L1.49994 8.00006" stroke="white" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_3279_34261">
+          <rect width="16" height="16" fill="white"/>
+          </clipPath>
+          </defs>
+          </svg>
+    default
+      .input(class=className)
+        input.input-field(id=className type=type required=req)
+        label.input-label(for=className)= placeholder
+        span.input-alert= alert

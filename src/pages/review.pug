@@ -1,0 +1,37 @@
+extends ../pug/template-light.pug
+
+block meta
+  title Отзывы
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block detail-top
+  .detail__top
+    .detail__top-inner
+      .detail-service__title
+        h1.h1big Отзывы
+      .detail-service__desc Мы бережно храним все отзывы <br> и упоминания о нашей работе
+block aside
+  .detail__aside.fixed-btn.fixed-btn--review.form__review-open
+    +link("Оставить отзыв", false, 'right')   
+block content
+  .detail__reviews
+    +review()
+    +review()
+    +review()
+    +review()
+    +review()
+    +review()
+    +review()
+    +review()
+  +pagination(5)
+block form
+  +form-popup("form-review__popup","Ваш отзыв", "Оставьте свой отзыв, и он появится на сайте после проверки администратором.")
+    +input("form__name", "text", "Имя и фамилия")
+    +input("form__mail", "email", "Эл. почта")
+    +input("form__text", "text", "Имя специалиста")
+    +input("form__text", "text", "Оказанная услуга")
+    +input("form__review", "textarea", "Текст отзыва")
+    +input("form__file", "file", "Прикрепить файл")

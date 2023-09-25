@@ -1,0 +1,45 @@
+// В этом файле должны быть стили для БЭМ-блока result-slider, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.result-slider {
+  $block-name: &; // #{$block-name}__element
+  .swiper-buttons__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .swiper-button {
+    &-prev,
+    &-next {
+      position: static;
+      background: none;
+      width: 32px;
+      height: 32px;
+      margin-top: 0;
+      svg path {
+        fill: $ui-primary;
+      }
+      &::after {
+        content: none;
+      }
+    }
+
+    &-prev {
+    }
+    &-next {
+      transform: rotate(180deg);
+      margin-left: 24px;
+      @media (max-width: 991px) {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+.result-slide {
+  display: flex;
+  gap: 20px;
+  &__caption {
+    @include p2;
+    margin-bottom: 8px;
+  }
+}

@@ -1,0 +1,22 @@
+//- Все примеси в этом файле должны начинаться c имени блока (form-popup)
+
+mixin form-popup(className, title, desc)
+
+  .form-popup(class=className)&attributes(attributes)
+    .form-popup__container.container
+      .form-popup__wrapper
+        button.form-popup__close
+          svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+            rect(x='4' y='27' width='32' height='2' transform='rotate(-45 4 27)' fill='#FFFFFF')
+            rect(x='5' y='4' width='32' height='2' transform='rotate(45 5 4)' fill='#FFFFFF')
+        .form-popup__inner
+          .form-popup__text
+            .form-popup__title
+              span= title
+            .form-popup__desc= desc
+          +form()
+            block
+        .form-popup__success
+          .form-popup__success-title Запрос успешно отправлен
+          .form-popup__success-desc В случае необходимости наш менеджер свяжется с вами для уточнения деталей.
+

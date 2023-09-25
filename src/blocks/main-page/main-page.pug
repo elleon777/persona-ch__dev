@@ -1,0 +1,93 @@
+//- Все примеси в этом файле должны начинаться c имени блока (main-page)
+
+mixin main-page(text, mods)
+  .main-page
+    .swiper-wrapper 
+      .main-page__wrapper.swiper-slide
+        video.video-bg(loop muted) 
+          source(src="img/mainPage1.mp4" type="video/mp4")
+        .main-page__inner
+          .main-page__left
+            .main-page__mobile-bg
+                img(src="img/mainPage1-mobile.jpg")
+            .main-page__title
+              h1 Невероятные хирурги, ответственные за результат
+            .main-page__link
+              +link("Центр пластической хирургии и эндоскопии", true ,"right")
+          aside.main-page__right
+            a.main-page__right-item(href="#")
+              +link("Наши хирурги", false, "right")
+      .main-page__wrapper.swiper-slide
+        video.video-bg(loop muted) 
+          source(src="img/mainPage2.mp4" type="video/mp4")
+        .main-page__inner
+          .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage2-mobile.jpg")
+            .main-page__title
+              h2 Широкий <br> спектр <br> проводимых <br> операций
+          aside.main-page__right.main-page__right--full
+            a.main-page__right-item(href="#")
+              +link("Пластическая хирургия", false, "right")
+            a.main-page__right-item(href="#")
+              +link("Гинекология", false, "right")
+            a.main-page__right-item(href="#")
+              +link("Общая хирургия", false, "right")
+            a.main-page__right-item(href="#")
+              +link("Флебология", false, "right")
+            a.main-page__right-item(href="#")
+              +link("Все операции", false, "right")
+      .main-page__wrapper.swiper-slide
+        video.video-bg(loop muted) 
+          source(src="img/mainPage3.mp4" type="video/mp4")
+        .main-page__inner
+          .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage3-mobile.jpg")
+            .main-page__title
+              h2 Крупнейшая хирургия с&nbsp;современным оборудованием
+            .main-page__link
+              +link("Подробнее о клинике", true,"right")
+          aside.main-page__right.main-page__right--full
+            .main-page__right-item
+              .main-page__right-number <span>&gt;</span> 1000
+              .main-page__right-title успешных операций <br> за последний год
+              +link("Показать еще", true, "refresh")
+            .main-page__right-item
+              .main-page__right-number 4
+              .main-page__right-title операционные
+            .main-page__right-item
+              .main-page__right-number 
+                img(src="img/emergency.svg", alt="")
+              .main-page__right-title собственная палата <br> интенсивной терапии
+      .main-page__wrapper.swiper-slide
+        video.video-bg(loop muted) 
+          source(src="img/mainPage4.mp4" type="video/mp4")
+        .main-page__inner
+          .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage4-mobile.jpg")
+            .main-page__title
+              h2 Нацеленность на быструю реабилитацию
+            .main-page__link
+              +link("Подробнее о реабилитации", true,"right")
+          aside.main-page__right.main-page__right--full.main-page__right--row
+            .main-page__right-item
+              .main-page__right-item--inner
+                img(src="img/anesthesia-white.svg", alt="")
+                .main-page__right-title Современная анестезиология
+                .main-page__right-text Мы отдаём предпочтение препаратам короткого действия, позволяющим сделать анестезию более управляемой, повысить скорость и качество восстановления после наркоза.
+            .main-page__right-item
+              .main-page__right-item--inner
+                img(src="img/cozy-white.svg", alt="")
+                .main-page__right-title Уют и внимание
+                .main-page__right-text Пребывание в комфортных условиях под круглосуточным медицинским наблюдением дежурного врача и среднего медицинского персонала.
+            .main-page__right-item
+              .main-page__right-item--inner
+                img(src="img/recovery-white.svg", alt="")
+                .main-page__right-title Fast-track
+                .main-page__right-text Меньший болевой синдром, низкий риск осложнений, короткий срок реабилитации, быстрое восстановление всех функций организма.
+      .main-page__wrapper.swiper-slide
+        +form-enroll("Запись на первичный приём хирурга")
+        +footer("transparent")
+                

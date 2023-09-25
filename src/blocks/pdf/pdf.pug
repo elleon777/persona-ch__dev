@@ -1,0 +1,25 @@
+//- Все примеси в этом файле должны начинаться c имени блока (pdf)
+
+mixin pdf(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +pdf('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' pdf--' + modsList[i].trim();
+      }
+    }
+
+  .pdf(class=allMods)&attributes(attributes)
+    span.pdf__text= text
+    span.pdf__size PDF, 3  мб
+    +link("Скачать", true, "down")
+    

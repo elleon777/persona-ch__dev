@@ -1,0 +1,47 @@
+extends ../pug/template-light.pug
+
+block meta
+  title Лицензии
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block detail-top
+  .detail__top
+    .detail__top-inner
+      .detail-service__title
+        h1.h1big Лицензии
+      .detail-service__desc Центр хирургии и эндоскопии «Персона» оказывает свои услуги на основании всех необходимых лицензий.
+block aside
+  .detail__aside 
+
+block content
+  .detail__licence-wrapper
+    .detail__licence
+      .detail__licence-block
+        a(href="img/licence.png" data-fancybox) 
+          img(src="img/licence.png", alt="")
+      .detail__licence-block
+        h4 Лицензия Министерства РФ Нижегородской области на осуществление медицинской деятельности
+        span Лицензия № ЛО-52–01–006258
+        span Самая важная лицензия, для осуществление медицинской деятельности
+        +link("Скачать", true, "down")(href="img/licence.png" download="licence.png")
+    .detail__licence
+      .detail__licence-block
+        a(href="img/licence.png" data-fancybox)  
+          img(src="img/licence.png", alt="")
+      .detail__licence-block
+        h4 Лицензия Министерства РФ Нижегородской области на осуществление медицинской деятельности
+        span Лицензия № ЛО-52–01–006258
+        span Самая важная лицензия, для осуществление медицинской деятельности
+        +link("Скачать", true, "down")(href="img/licence.png" download="licence.png")
+    .detail__licence
+      .detail__licence-block
+        a(href="img/licence.png" data-fancybox) 
+          img(src="img/licence.png", alt="")
+      .detail__licence-block
+        h4 Лицензия Министерства РФ Нижегородской области на осуществление медицинской деятельности
+        span Лицензия № ЛО-52–01–006258
+        span Самая важная лицензия, для осуществление медицинской деятельности
+        +link("Скачать", true, "down")(href="img/licence.png" download="licence.png")

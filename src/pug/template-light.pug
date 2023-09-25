@@ -1,0 +1,40 @@
+include mixins.pug
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    meta(name='format-detection', content='telephone=no')
+    meta(name='format-detection', content='date=no')
+    meta(name='format-detection', content='address=no')
+    meta(name='format-detection', content='email=no')
+    meta(content='notranslate', name='google')
+
+
+    block meta
+      title Home
+
+    block head
+      link(rel='stylesheet', href='css/style.css')
+      script
+        include ../js/head-script.js
+
+  body
+    +header('white')
+    .detail.detail--light
+      block detail-top
+      .detail__bottom
+        .detail__bottom-inner
+          block aside
+          .detail__content
+            block content
+    block detail-footer
+    block form
+    block footer    
+      +footer("light")  
+                                                                                                                        
+
+    block page-bottom
+      script(src='js/bundle.js')

@@ -1,0 +1,126 @@
+// В этом файле должны быть стили для БЭМ-блока map-popup, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.map-popup {
+  $block-name: &; // #{$block-name}__element
+  padding: 0;
+  @media (min-width: 1024px) {
+    padding: 40px;
+  }
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      height: 100px;
+      background: var(
+        --ui-gradients-gradient,
+        linear-gradient(
+          180deg,
+          #f2f6ff 0%,
+          rgba(242, 246, 255, 0.9) 52.87%,
+          rgba(242, 246, 255, 0) 100%
+        )
+      );
+      @media (min-width: 1024px) {
+        height: 160px;
+      }
+    }
+  }
+  .preloader {
+    position: absolute;
+    &:after {
+      position: absolute;
+    }
+  }
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+  .ymaps-2-1-79-copyright,
+  .ymaps-2-1-79-map-copyrights-promo {
+    display: none;
+  }
+  &__close {
+    --iconSize: 24px;
+    position: absolute;
+    top: var(--iconSize);
+    right: var(--iconSize);
+    z-index: 1;
+    cursor: pointer;
+    @media (min-width: 1024px) {
+      --iconSize: 32px;
+    }
+    svg {
+      width: var(--iconSize);
+      height: var(--iconSize);
+    }
+  }
+  &__zoom {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 1023px) {
+      display: none;
+    }
+    &-in,
+    &-out {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(168, 195, 234, 0.5);
+      cursor: pointer;
+    }
+  }
+  &__address {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 1;
+    @include s3;
+    @media (min-width: 1024px) {
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: $f-primary;
+    }
+  }
+  &__route {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    @include s3;
+    color: $f-white;
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    gap: 32px;
+    background-color: $ui-primary;
+    cursor: pointer;
+    justify-content: space-between;
+    @media (min-width: 1024px) {
+      padding: 32px 40px;
+      bottom: 24px;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    svg path {
+      stroke: $f-white !important;
+    }
+  }
+}

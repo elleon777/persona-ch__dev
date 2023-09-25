@@ -1,0 +1,73 @@
+// В этом файле должны быть стили для БЭМ-блока time-popup, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.time-popup {
+  $block-name: &; // #{$block-name}__element
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: none;
+  height: calc((var(--vh, 1vh) * 100));
+  width: 100%;
+  max-width: 400px;
+  @include blur(40px);
+  z-index: 999;
+  padding: 16px;
+  @media (min-width: 768px) {
+    padding: 40px;
+  }
+  @media (max-width: 991px) {
+    max-width: none;
+    background: $ui-dark;
+  }
+  &--show {
+    animation: fadeRightLeftIn 0.5s both;
+  }
+  &--hide {
+    animation: fadeRightLeftOut 0.5s both;
+  }
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    svg {
+      --iconSize: 24px;
+      width: var(--iconSize);
+      height: var(--iconSize);
+      @media (min-width: 1366px) {
+        --iconSize: 32px;
+      }
+    }
+  }
+  &__title {
+    @include h2;
+    color: $f-white;
+    flex-grow: 1;
+    height: 100%;
+    max-width: 150px;
+  }
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  &__item {
+  }
+  &__day {
+    @include s2;
+    color: $f-primary;
+    margin-bottom: 8px;
+  }
+  &__time {
+    @include h2;
+    color: $f-white;
+  }
+}

@@ -1,0 +1,12 @@
+@mixin border-dots() {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url(../img/dots.svg);
+    background-position: left center;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transition: opacity .4s;
+}

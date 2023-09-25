@@ -1,0 +1,8 @@
+@mixin blur($px) {
+	background: rgba(23, 55, 85, 0.7);
+	backdrop-filter: blur($px);
+}
+@mixin blur-header {
+	background: rgba(140, 165, 203, 0.2);
+	backdrop-filter: blur(20px);
+}

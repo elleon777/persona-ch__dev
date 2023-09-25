@@ -1,0 +1,25 @@
+.link-desc {
+  $block-name: &; // #{$block-name}__element
+  display: inline-flex;
+  align-items: center;
+  .link-text {
+    flex-grow: 1;
+    &__title {
+    }
+    &__desc {
+      @include s3;
+      color: $f-black;
+      opacity: 0.5;
+      transition: 0.3s;
+    }
+  }
+  svg {
+    margin-left: 16px;
+    flex-shrink: 0;
+    transform: rotate(180deg);
+    path {
+      transition: 0.3s;
+      stroke: none;
+    }
+  }
+}

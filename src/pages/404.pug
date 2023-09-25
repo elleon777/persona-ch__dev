@@ -1,0 +1,23 @@
+extends ../pug/layout.pug
+
+block meta
+  title 404
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block content
+  +header('dark')
+  .notfound(style="background-image: url('img/404.png')")
+    .container
+      .notfound__inner
+        .notfound__title 404
+        .notfound__subtitle Страница <br> не найдена
+        +link("На главную", true, "right")
+  +cookie()
+//- block footer
+//-   p footer
+
+//- block append page-bottom
+//-   script(src='js/some.js')

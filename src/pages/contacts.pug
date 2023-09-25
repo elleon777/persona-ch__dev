@@ -1,0 +1,78 @@
+extends ../pug/template-light.pug
+
+block meta
+  title Контакты
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block detail-top
+  .detail__top
+    .detail__top-inner
+      .detail-service__title
+        h1.h1big Контакты
+      .contacts__subtitle
+        h2.h2 Сегодня работаем до 19:00
+      button.contacts__button.time-popup__open Режим работы
+block aside
+  .detail__aside.contacts__aside
+    .contacts__subtitle
+        h2.h2 Сегодня работаем <br> до 19:00
+    button.contacts__button.time-popup__open Режим работы
+block content
+  .detail__inner.contacts__inner
+    .contacts__tel
+      .contacts__tel-item
+        h3.contacts__tel-title Регистратура
+        a.contacts__tel-number(href="tel:+78314223080") +7 (831) 422−30−80
+        button.contacts__button.form__callback-open Перезвоните мне
+      .contacts__tel-item
+        .contacts__tel-title Круглосуточный стационар
+        a.contacts__tel-number(href="tel:+78314223080") +7 (831) 422−30−80
+    .contacts__address
+      h3.contacts__address-title Адрес
+      h2.contacts__address-content г. Нижний Новгород, <br> ул. Большая Печерская, д. 26, 
+      button.contacts__button.map-popup__open Посмотреть на карте
+    .contacts__social
+      h3.contacts__social-title Наши соцсети
+      .contacts__social-content
+        a(href="")
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="40" fill="#F2F6FF"/>
+            <path d="M54.0175 51.808H58.3809C59.6518 51.808 60.2449 51.1726 59.906 49.9441C59.5247 48.7155 58.0844 46.9363 56.2204 44.8181C55.2037 43.632 53.6786 42.3187 53.2126 41.6833C52.5772 40.836 52.7466 40.4971 53.2126 39.7346C53.1703 39.7346 58.508 32.1939 59.0587 29.6522C59.3553 28.7202 59.0587 28.0424 57.7455 28.0424H53.3821C52.2806 28.0424 51.7723 28.6354 51.4757 29.2709C51.4757 29.2709 49.2305 34.6934 46.0956 38.2095C45.0789 39.2262 44.6129 39.5651 44.0622 39.5651C43.7657 39.5651 43.3844 39.2262 43.3844 38.2942V29.6098C43.3844 28.5084 43.0455 28 42.1135 28H35.2507C34.5729 28 34.1493 28.5084 34.1493 29.0167C34.1493 30.0758 35.7167 30.33 35.8861 33.2954V39.7346C35.8861 41.1325 35.632 41.3867 35.0812 41.3867C33.5985 41.3867 29.9977 35.9219 27.8372 29.6945C27.4135 28.466 26.9899 28 25.8885 28H21.4827C20.2118 28 20 28.5931 20 29.2285C20 30.3723 21.4827 36.1337 26.9052 43.7591C30.506 48.9697 35.632 51.7657 40.2495 51.7657C43.0455 51.7657 43.3844 51.1302 43.3844 50.0711V46.1314C43.3844 44.8605 43.6386 44.6487 44.5282 44.6487C45.1636 44.6487 46.3074 44.9876 48.8916 47.487C51.857 50.4524 52.3654 51.808 54.0175 51.808Z" fill="#0F1F3F"/>
+          </svg>
+        a(href="")
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="40" fill="#F2F6FF"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.7498 37.6368C31.4872 32.8386 38.6471 29.6753 42.2296 28.147C52.4584 23.7833 54.5838 23.0253 55.9692 23.0003C56.2739 22.9948 56.9551 23.0722 57.3964 23.4395C57.769 23.7496 57.8716 24.1685 57.9206 24.4626C57.9697 24.7566 58.0308 25.4264 57.9822 25.9497C57.4279 31.9233 55.0295 46.4196 53.8093 53.11C53.293 55.941 52.2763 56.8903 51.2921 56.9832C49.1532 57.185 47.529 55.5333 45.4573 54.1405C42.2156 51.9609 40.3842 50.6042 37.2376 48.4773C33.6011 46.0194 35.9585 44.6685 38.0309 42.4607C38.5733 41.883 47.9974 33.0909 48.1798 32.2934C48.2026 32.1936 48.2238 31.8218 48.0085 31.6255C47.7931 31.4291 47.4752 31.4963 47.2459 31.5497C46.9207 31.6253 41.742 35.1361 31.7097 42.082C30.2398 43.1173 28.9083 43.6217 27.7154 43.5953C26.4003 43.5662 23.8706 42.8326 21.99 42.2056C19.6833 41.4366 17.8501 41.03 18.0097 39.7239C18.0928 39.0437 19.0062 38.3479 20.7498 37.6368Z" fill="#0F1F3F"/>
+          </svg>
+    .contacts__mail
+      h3.contacts__mail-title Связаться с нами через интерент
+      a.contacts__mail-content(href="mailto:info@persona-mail.ru") info@persona-mail.ru 
+    .contacts__director
+      h3.contacts__director-title Контакты руководства
+      .contacts__director-name Закомерная <br> Екатерина <br> Анатольевна 
+      .contacts__director-desc Главный врач центра пластической хирургии <br> и эндоскопии «Персона»
+    .contacts__wrapper
+      .contacts__entry
+        h5.contacts__entry-title Предварительная запись по телефону
+        a.contacts__entry-number(href="tel:+78314223080") +7 (831) 422−30−80
+      .contacts__time
+        h5.contacts__time-title График приёма
+        .contacts__time-content Понедельник, вторник, среда с 14:00 до 15:00
+      .contacts__thanks
+        .contacts__thanks-title Поблагодарить за работу <br> или пожаловаться на качество услуг
+        button.contacts__button.form__feedback-open Форма обратной связи
+block form
+  +form-popup("form-feedback__popup","Обратная связь", "Заполните форму, чтобы наш менеджер смог связаться с вами в случае необходимости.")
+    select(data-title="Тип обращения")
+      option(value="")  Претензия
+      option(value="")  Благодарность
+      option(value="")  Вопрос
+    +input("form__name", "text", "Имя и фамилия")
+    +input("form__text", "text", "Телефон")
+    +input("form__mail", "email", "Эл. почта")
+    +input("form__review", "textarea", "Комментарий")
+    +input("form__file", "file", "Прикрепить файл")
+

@@ -1,0 +1,51 @@
+.link {
+  $block-name: &; // #{$block-name}__element
+  display: inline-flex;
+  align-items: center;
+  &-text {
+    transition: 0.3s;
+  }
+  &--right {
+    svg {
+      transform: rotate(180deg);
+      margin-right: 0;
+      margin-left: 24px;
+    }
+  }
+  &--left {
+    svg {
+      order: -1;
+      margin-right: 10;
+      margin-left: 0;
+    }
+  }
+  &--down {
+    // flex-direction: row-reverse;
+    span {
+      margin-right: 24px;
+    }
+    svg {
+      transform: rotate(-90deg);
+      margin-right: 0;
+      margin: 0;
+    }
+  }
+  &--button {
+    width: 100%;
+    justify-content: space-between;
+    padding: 32px 0;
+  }
+  &--refresh {
+    flex-direction: row-reverse;
+    justify-content: left !important;
+    gap: 20px;
+  }
+  svg {
+    margin-right: 8px;
+    flex-shrink: 0;
+    path {
+      transition: 0.3s;
+      stroke: none;
+    }
+  }
+}

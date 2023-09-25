@@ -1,0 +1,27 @@
+//- Все примеси в этом файле должны начинаться c имени блока (map-popup)
+
+mixin map-popup()
+
+  .map-popup.form-popup
+    .map-popup__inner
+      #map
+      button.map-popup__close
+        svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+          rect(x='4' y='27' width='32' height='2' transform='rotate(-45 4 27)' fill='#49AC32')
+          rect(x='5' y='4' width='32' height='2' transform='rotate(45 5 4)' fill='#49AC32')
+      .map-popup__address Большая Печерская, д. 26
+      .map-popup__zoom
+        button.map-popup__zoom-in
+          svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+            rect(x='30' y='15' width='2' height='28' transform='rotate(90 30 15)' fill='#49AC32')
+            rect(x='17' y='30' width='2' height='28' transform='rotate(-180 17 30)' fill='#49AC32')
+        button.map-popup__zoom-out
+          svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+            rect(x='30' y='15' width='2' height='28' transform='rotate(90 30 15)' fill='#49AC32')
+      button.map-popup__route
+        span Проложить маршрут
+        svg(width='24' height='24' viewbox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
+          path(d='M15 3H21V9' stroke='white' stroke-width='2' stroke-linecap='square')
+          path(d='M10.209 14.3086L19.959 3.80859' stroke='white' stroke-width='2' stroke-linecap='square' stroke-linejoin='round')
+          path(d='M18.084 11.6836V21.0586H3.08398V6.05859H12.459' stroke='white' stroke-width='2')
+

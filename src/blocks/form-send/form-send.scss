@@ -1,0 +1,33 @@
+// В этом файле должны быть стили для БЭМ-блока form-send, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.form-send {
+  $block-name: &; // #{$block-name}__element
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $ui-primary;
+  padding: 32px 40px;
+  cursor: pointer;
+  span {
+    @include s3;
+    color: $f-white !important;
+  }
+  &[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  @media (min-width: 992px) {
+    transition: 0.3s;
+    &:hover {
+      background-color: $ui-hover;
+    }
+  }
+  @media (max-width: 991px) {
+    padding: 16px;
+  }
+  @media (max-width: 480px) {
+    grid-column: 1;
+  }
+}

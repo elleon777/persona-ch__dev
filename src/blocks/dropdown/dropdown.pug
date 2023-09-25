@@ -1,0 +1,27 @@
+//- Все примеси в этом файле должны начинаться c имени блока (dropdown)
+
+mixin dropdown(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +dropdown('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' dropdown--' + modsList[i].trim();
+      }
+    }
+
+  .dropdown(class=allMods)&attributes(attributes)
+    button.dropdown__caption
+      span= text
+      svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+        path(d='M3.5 10L16 22.1743L28.5 10' stroke='#0F1F3F' stroke-width='2')
+    .dropdown__content
+      block

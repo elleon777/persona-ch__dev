@@ -1,0 +1,127 @@
+// В этом файле должны быть стили для БЭМ-блока review, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.review {
+  $block-name: &; // #{$block-name}__element
+  overflow: hidden;
+  &__date {
+    @include s4;
+    margin-bottom: 16px;
+    @media (max-width: 991px) {
+      margin-bottom: 8px;
+    }
+  }
+  &__title {
+    @include h2;
+    margin-bottom: 32px;
+    @media (max-width: 991px) {
+      margin-bottom: 12px;
+    }
+  }
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px;
+    margin-bottom: 32px;
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    &-item {
+    }
+    &-prop {
+      @include s4;
+      margin-bottom: 4px;
+    }
+    &-value {
+      @include s2;
+      color: $f-primary;
+    }
+  }
+  &__desc {
+    @include p3;
+    margin: 32px 0;
+    @media (max-width: 991px) {
+      margin: 12px 0;
+    }
+  }
+  &__images {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+  &__img {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    flex-shrink: 0;
+    @media (max-width: 991px) {
+      width: 120px;
+      height: 120px;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      object-fit: cover;
+    }
+    .youtube {
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+        @media (max-width: 991px) {
+          height: 120px;
+        }
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          height: 100%;
+        }
+        &:hover {
+          .play {
+            background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M49.9935 36.1857L109.924 70L49.9935 103.814L49.9935 36.1857Z' fill='white' stroke='white' stroke-width='4'/%3E%3Ccircle cx='70' cy='70' r='68' stroke='white' stroke-width='4'/%3E%3C/svg%3E%0A");
+          }
+        }
+      }
+      .play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M49.9935 36.1857L109.924 70L49.9935 103.814L49.9935 36.1857Z' stroke='white' stroke-width='4'/%3E%3Ccircle cx='70' cy='70' r='68' stroke='white' stroke-width='4'/%3E%3C/svg%3E%0A");
+        background-size: cover;
+        width: 64px;
+        height: 64px;
+        transition: 0.3s;
+        cursor: pointer;
+        @media (max-width: 991px) {
+          width: 64px;
+          height: 64px;
+        }
+        @media (max-width: 600px) {
+          width: 64px;
+          height: 64px;
+        }
+        @media (max-width: 375px) {
+          width: 52px;
+          height: 52px;
+        }
+      }
+    }
+  }
+  .review__desc + .read-more {
+    margin-bottom: 16px;
+  }
+}

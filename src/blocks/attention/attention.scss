@@ -1,0 +1,23 @@
+// В этом файле должны быть стили для БЭМ-блока attention, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.attention {
+  $block-name: &; // #{$block-name}__element
+  padding: 40px;
+  color: $f-black;
+  background-color: $ui-light2;
+  @media (max-width: 991px) {
+    padding: 24px;
+  }
+  &__title {
+    @include h4;
+    margin-bottom: 20px;
+    @media (max-width: 991px) {
+      margin-bottom: 12px;
+    }
+  }
+  &__desc {
+    @include s3;
+  }
+}

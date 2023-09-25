@@ -1,0 +1,51 @@
+//- Все примеси в этом файле должны начинаться c имени блока (search)
+
+mixin search(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +search('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' search--' + modsList[i].trim();
+      }
+    }
+
+  .search(class=allMods)&attributes(attributes)
+    .search__wrapper
+      .search__inner
+        .search__header 
+          .search__title Поиск
+          button.search__close
+            svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+              rect(x='4' y='27' width='32' height='2' transform='rotate(-45 4 27)' fill='#FFFFFF')
+              rect(x='5' y='4' width='32' height='2' transform='rotate(45 5 4)' fill='#FFFFFF')
+
+        form.search__input
+          button
+            svg(width='24' height='24' viewbox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
+              path(d='M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z' stroke='white' stroke-linecap='square')
+              path(d='M20.9984 20.9984L16.6484 16.6484' stroke='white' stroke-linecap='square')
+          input(type="text" placeholder="Введите поисковой запрос")
+        .search__result
+          +tabs(['Найдено в операциях', 'Найдено на сайте']) 
+            .tabs__content-block
+              +link('Маммопластика', true, 'button, right')
+              +link('Блефаропластика (подтяжка век)', true, 'button, right')
+              +link('Абдоминопластика', true, 'button, right')
+              +link('Удаление маточной трубы по поводу внематочной беременности', true, 'button, right')
+              +link('Липосакция', true, 'button, right')
+              +link('Маммопластика', true, 'button, right')
+              +link('Блефаропластика (подтяжка век)', true, 'button, right')
+              +link('Абдоминопластика', true, 'button, right')
+              +link('Удаление маточной трубы по поводу внематочной беременности', true, 'button, right')
+              +link('Липосакция', true, 'button, right')
+              +pagination(5)
+            .tabs__content-block

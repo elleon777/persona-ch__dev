@@ -1,0 +1,21 @@
+//- Все примеси в этом файле должны начинаться c имени блока (time-popup)
+
+mixin time-popup(text, mods)
+
+  .time-popup
+    .time-popup__wrapper
+      button.time-popup__close
+        svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+          rect(x='4' y='27' width='32' height='2' transform='rotate(-45 4 27)' fill='#49AC32')
+          rect(x='5' y='4' width='32' height='2' transform='rotate(45 5 4)' fill='#49AC32')
+      .time-popup__title Режим работы
+      .time-popup__inner
+        .time-popup_item
+          .time-popup__day С понедельника по пятницу
+          .time-popup__time 9:00–19:00
+        .time-popup_item
+          .time-popup__day Суббота
+          .time-popup__time 9:00–13:00
+        .time-popup_item
+          .time-popup__day Воскресенье
+          .time-popup__time Выходной

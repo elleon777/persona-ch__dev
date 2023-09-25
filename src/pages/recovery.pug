@@ -1,0 +1,123 @@
+extends ../pug/lending.pug
+
+block meta
+  title О реабилитации
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href="")
+
+block banner
+  .lending__banner(style="background-image: url('img/rehabilitation.png')")
+    h1 Нацеленность на быструю реабилитацию
+block content
+  h2.observer В Центре пластической хирургии и эндоскопии «Персона» внедрена уникальная стратегия оперативного лечения пациентов <span>Fast Track</span>, которая значительно ускоряет после операционное восстановление пациентов
+  .lending-infographics__title <span>Стратегия оперативного лечения</span> пациентов Fast Track
+  .lending-infographics
+    .lending-infographics__item-title.grey Классическая стратегия лечения
+    .lending-infographics__wrapper
+      .lending-infographics__inner
+        .lending-infographics__item.grey
+          .lending-infographics__item-bar
+            .progress(data-progress="0")
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+        .lending-infographics__stages
+          span Госпитализация
+          span Предоперационная подготовка
+          span Операция
+          span Послеоперационный период
+          span Выписка
+        .lending-infographics__item.green
+          .lending-infographics__item-bar
+            .progress(data-multiplyer="5")
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+            span.line
+              span
+      .lending-infographics__popup
+
+        //- .lending-infographics__popup-item
+        //-   span
+        //-   .lending-infographics__popup-title Госпитализация
+        //-   .lending-infographics__popup-desc
+        //-     p Время пробуждения пациента после операции сократилось благодаря изменению схемы анестезии. Предпочтение отдаютсё препаратам короткого действия — позволяющим сделать анестезию более управляемой и сократить время восстановления после наркоза.
+        //-     p Также большую роль играет анестезиолог-реаниматолог. Именно он объясняет значение ранней активизации после операции, важности раннего энтерального питания, дыхательной гимнастики.
+        .lending-infographics__popup-item
+          span
+          .lending-infographics__popup-title Предоперационная подготовка
+          .lending-infographics__popup-desc
+            p Время пробуждения пациента после операции сократилось благодаря изменению схемы анестезии. Предпочтение отдаютсё препаратам короткого действия — позволяющим сделать анестезию более управляемой и сократить время восстановления после наркоза.
+            p Также большую роль играет анестезиолог-реаниматолог. Именно он объясняет значение ранней активизации после операции, важности раннего энтерального питания, дыхательной гимнастики.
+        .lending-infographics__popup-item
+          span
+          .lending-infographics__popup-title Операция
+          .lending-infographics__popup-desc
+            p Время пробуждения пациента после операции сократилось благодаря изменению схемы анестезии. Предпочтение отдаютсё препаратам короткого действия — позволяющим сделать анестезию более управляемой и сократить время восстановления после наркоза.
+            p Также большую роль играет анестезиолог-реаниматолог. Именно он объясняет значение ранней активизации после операции, важности раннего энтерального питания, дыхательной гимнастики.
+        .lending-infographics__popup-item
+          span
+          .lending-infographics__popup-title Послеоперационный период в Fast&nbsp;Track
+          .lending-infographics__popup-desc
+            p Время пробуждения пациента после операции сократилось благодаря изменению схемы анестезии. Предпочтение отдаютсё препаратам короткого действия — позволяющим сделать анестезию более управляемой и сократить время восстановления после наркоза.
+            p Также большую роль играет анестезиолог-реаниматолог. Именно он объясняет значение ранней активизации после операции, важности раннего энтерального питания, дыхательной гимнастики.
+        //- .lending-infographics__popup-item
+        //-   span
+        //-   .lending-infographics__popup-title Выписка
+        //-   .lending-infographics__popup-desc
+        //-     p Время пробуждения пациента после операции сократилось благодаря изменению схемы анестезии. Предпочтение отдаютсё препаратам короткого действия — позволяющим сделать анестезию более управляемой и сократить время восстановления после наркоза.
+        //-     p Также большую роль играет анестезиолог-реаниматолог. Именно он объясняет значение ранней активизации после операции, важности раннего энтерального питания, дыхательной гимнастики.
+    .lending-infographics__item-title.green Стратегия лечения Fast Track
+  p.p2.observer Медицина не стоит на месте, Fast Track постоянно изучается и разрабатываются новые тактики. Такой подход способствует уменьшению страха и тревоги пациента, сокращению сроков пребывания в стационаре, поэтому бояться операции сегодня не стоит.
+  .lending-painkiller(style="background-image: url('img/painkiller.png')") 
+    .lending-painkiller__title <span>Современная концепция обезболивания,</span> сводящая к минимуму побочное влияние анестезии <br> на организм
+    .lending-painkiller__desc Время пробуждения пациента после операции сократилось благодаря применению исключительно современных анестетиков и индивидуальному подходу. Мы отдаём предпочтение препаратам короткого действия, позволяющим сделать анестезию более управляемой, повысить скорость и качество восстановления после наркоза.
+  .lending-gallery
+    .lending-gallery__title Уют как дома
+    .lending-gallery__wrapper
+      .lending-gallery__inner
+        .swiper-wrapper
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery1.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery1.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery2.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery2.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery3.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery3.png", alt="")    
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery4.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery4.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery5.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery5.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery6.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery6.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery7.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery7.png", alt="")
+          .lending-gallery__item.swiper-slide
+            a(href="img/lending-gallery8.png" data-fancybox='recovery') 
+              img(src="img/lending-gallery8.png", alt="")
+    .lending-gallery__desc С каждым клиентом прорабатываем индивидуальную программу лечения и профилактики. Все лечения и обследования проводятся в строгом соответствии стандартам оказания медицинской помощи. Для нас ценно время наших клиентов, поэтому весь лечебно-диагностический процесс будет организован в кратчайшие сроки.
+
+block see-also
+  span Смотрите также
+  a(href="/equipment.html").see-also__title Современное оборудование
+

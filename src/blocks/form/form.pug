@@ -1,0 +1,7 @@
+//- Все примеси в этом файле должны начинаться c имени блока (form)
+
+mixin form()
+  form.form(action="")
+    block
+    +form-checkbox()
+    +form-send()

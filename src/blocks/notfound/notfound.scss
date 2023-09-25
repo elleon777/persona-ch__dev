@@ -1,0 +1,46 @@
+// В этом файле должны быть стили для БЭМ-блока notfound, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.notfound {
+  $block-name: &; // #{$block-name}__element
+  height: calc((var(--vh, 1vh) * 100));
+  background-size: cover;
+  background-repeat: no-repeat;
+  &__inner {
+    grid-column: 12 span;
+    margin-bottom: 60px;
+    align-self: flex-end;
+    @media (max-width: 991px) {
+      grid-column: 8 span;
+    }
+  }
+  &__title {
+    font-size: 180px;
+    font-weight: 300;
+    color: $f-white;
+    @media (max-width: 991px) {
+      font-size: 80px;
+    }
+  }
+  &__subtitle {
+    @include h1;
+    color: $f-white;
+  }
+  .link {
+    margin-top: 24px;
+    &-text {
+      @include s1;
+    }
+    svg {
+      path {
+        fill: $ui-primary;
+      }
+    }
+    &:hover {
+      svg path {
+        fill: $ui-hover;
+      }
+    }
+  }
+}

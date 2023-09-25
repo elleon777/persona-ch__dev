@@ -1,0 +1,52 @@
+//- Все примеси в этом файле должны начинаться c имени блока (pagination)
+
+mixin pagination(num, onlymore, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +pagination('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' pagination--' + modsList[i].trim();
+      }
+    }
+
+  .pagination(class=allMods)&attributes(attributes)
+    if onlymore == true
+      .pagination__block
+        .pagination__show-more
+          span Показать еще
+          <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.0625 7.5L14 16.6307L24.9375 7.5" stroke="#0F1F3F"/>
+          </svg>
+    else
+      .pagination__block
+        .pagination__show-more
+          span Показать еще
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.375 7.5L12.75 16.6307L22.125 7.5" stroke="#0F1F3F" stroke-width="2"/>
+          </svg>
+      .pagination__block
+        span.pagination__left
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.8125 2.69043L7.68181 12.0654L16.8125 21.4404" stroke="#0F1F3F" stroke-width="2"/>
+          </svg>
+
+        - var n = 1;
+        ul.pagination__list
+          while n <= num
+            li= n++
+        span.pagination__right
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.6875 21.4404L16.8182 12.0654L7.6875 2.69043" stroke="#0F1F3F" stroke-width="2"/>
+          </svg>
+
+
+

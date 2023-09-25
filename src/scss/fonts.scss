@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "TTFirsNeue";
+  font-size: 600;
+  src: url("../fonts/TTFirsNeueDemiBold.otf") format("opentype"),
+    url("../fonts/TTFirsNeueDemiBold.woff2") format("woff2"),
+    url("../fonts/TTFirsNeueDemiBold.woff") format("woff"),
+    url("../fonts/TTFirsNeueDemiBold.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "TTFirsNeue";
+  font-weight: 400;
+  src: url("../fonts/TTFirsNeueRegular.otf") format("opentype"),
+    url("../fonts/TTFirsNeueRegular.woff2") format("woff2"),
+    url("../fonts/TTFirsNeueRegular.woff") format("woff"),
+    url("../fonts/TTFirsNeueRegular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "TTFirsNeue";
+  font-weight: 300;
+  src: url("../fonts/TTFirsNeueLight.woff2") format("woff2"),
+    url("../fonts/TTFirsNeueLight.woff") format("woff"),
+    url("../fonts/TTFirsNeueLight.ttf") format("truetype");
+  font-display: swap;
+}

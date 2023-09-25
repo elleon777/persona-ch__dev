@@ -1,0 +1,23 @@
+//- Все примеси в этом файле должны начинаться c имени блока (attention)
+
+mixin attention(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +attention('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' attention--' + modsList[i].trim();
+      }
+    }
+
+  .attention(class=allMods)&attributes(attributes)
+    .attention__title Обратите внимание
+    .attention__desc На многие процедуры невозможно указать финальную цену, потому что она зависит от множества факторов. Вы узнаете окончательную стоимость после консультации с врачом.

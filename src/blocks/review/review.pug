@@ -1,0 +1,43 @@
+//- Все примеси в этом файле должны начинаться c имени блока (review)
+
+mixin review(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +review('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' review--' + modsList[i].trim();
+      }
+    }
+
+  .review(class=allMods)&attributes(attributes)
+    .review__date 01 июля 2021
+    .review__title Отзыв о клинике и враче Закомерной Е. А.
+    .review__inner
+      .review__inner-item
+        .review__inner-prop Специалист
+        .review__inner-value Закомерная Екатерина Анатольевна
+      .review__inner-item
+        .review__inner-prop Оказанная услуга
+        .review__inner-value Ринопластика
+    .review__desc Спасибо доктору Закомерной Екатерине Анатольевне за исполнение моей мечты. Прошло уже 8 месяцев с момента операции по увеличению груди, и уже можно говорить о результате. Грудь получилась очень натуральной и гармоничной. Восстановление тоже прошло достаточно легко, все рекомендации я строго выполняла. Доктор постоянно на связи по любым вопросам. Я очень рада, что попала в руки настоящего профессионала, спасибо за мое идеальное тело, продолжаю рекомендовать Вас и с удовольствие смотреться в зеркало. :)
+    .review__images
+      .review__img
+        .youtube
+          a(href="https://www.youtube.com/watch?v=CqnU_sJ8V-E" data-fancybox data-type="iframe") 
+      .review__img
+        a(href="img/result-before.png" data-fancybox) 
+          img(src="img/result-before.png", alt="")
+      .review__img
+        a(href="img/result-after.png" data-fancybox) 
+          img(src="img/result-after.png", alt="")
+
+

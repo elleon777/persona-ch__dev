@@ -1,0 +1,300 @@
+//- Все примеси в этом файле должны начинаться c имени блока (header)
+
+mixin header(mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +header('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' header--' + modsList[i].trim();
+      }
+    }
+
+  header.header(class=allMods)&attributes(attributes)
+    .header__mobile
+      .header__wrapper
+        a.header__logo(href="/")
+          img.header__logo--white(src="img/logo-white.svg", alt="")
+          img.header__logo--black(src="img/logo-black.svg", alt="")
+        button.header__phone
+          span 
+            a(href="tel:88314223080") 8 831 422-30-80 
+        button.header__search 
+          svg(width='22' height='23' viewbox='0 0 22 23' fill='none' xmlns='http://www.w3.org/2000/svg')
+            path(d='M10.0833 17.9167C14.1334 17.9167 17.4167 14.6334 17.4167 10.5833C17.4167 6.53325 14.1334 3.25 10.0833 3.25C6.03325 3.25 2.75 6.53325 2.75 10.5833C2.75 14.6334 6.03325 17.9167 10.0833 17.9167Z' stroke='white' stroke-width='2' stroke-linecap='square')
+            path(d='M19.2492 19.7492L15.2617 15.7617' stroke='white' stroke-width='2' stroke-linecap='round')
+        button.header__menu
+          span
+          span
+          span
+          span
+    .header__top
+      .header__wrapper
+        button.header__search 
+          svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+            path(d='M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z' stroke='#0F1F3F' stroke-linecap='square')
+            path(d='M13.9996 14.0001L11.0996 11.1001' stroke='#0F1F3F' stroke-linecap='square')
+          span Поиск
+        nav.header__menu.header__menu--top
+          ul
+            li
+              a(href="/news.html") Новости
+            li
+              a(href="/articles.html") Статьи
+            li
+              a(href="/stock.html") Акции
+            li
+              a(href="/policy.html") Юр. информация
+        .header__info
+          button.header__map.map-popup__open    
+            svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+              path(d='M13.25 7C13.25 10.75 8 14.25 8 14.25C8 14.25 2.75 10.75 2.75 7C2.75 5.60761 3.30312 4.27226 4.28769 3.28769C5.27226 2.30312 6.60761 1.75 8 1.75C9.39239 1.75 10.7277 2.30312 11.7123 3.28769C12.6969 4.27226 13.25 5.60761 13.25 7V7Z' stroke='#0F1F3F' stroke-linecap='round' stroke-linejoin='round')
+              path(d='M8 8.25C8.69036 8.25 9.25 7.69036 9.25 7C9.25 6.30964 8.69036 5.75 8 5.75C7.30964 5.75 6.75 6.30964 6.75 7C6.75 7.69036 7.30964 8.25 8 8.25Z' fill='#0F1F3F' stroke='#0F1F3F' stroke-linecap='round' stroke-linejoin='round')
+            span Б. Печерская, д. 26
+          button.header__time.time-popup__open
+            span Сегодня работаем до 19:00
+          .header__inner
+            button.header__phone
+              svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                g(clip-path='url(#clip0_5_127)')
+                  path(d='M14.6669 11.2802V13.2802C14.6677 13.4659 14.6297 13.6497 14.5553 13.8198C14.4809 13.9899 14.3718 14.1426 14.235 14.2681C14.0982 14.3937 13.9367 14.4892 13.7608 14.5487C13.5849 14.6082 13.3985 14.6303 13.2136 14.6136C11.1622 14.3907 9.19161 13.6897 7.46028 12.5669C5.8495 11.5433 4.48384 10.1777 3.46028 8.56689C2.3336 6.8277 1.63244 4.84756 1.41361 2.78689C1.39695 2.60254 1.41886 2.41673 1.47795 2.24131C1.53703 2.06589 1.63199 1.90469 1.75679 1.76797C1.88159 1.63126 2.03348 1.52203 2.20281 1.44724C2.37213 1.37245 2.55517 1.33374 2.74028 1.33356H4.74028C5.06382 1.33038 5.37748 1.44495 5.62279 1.65592C5.8681 1.86689 6.02833 2.15986 6.07361 2.48023C6.15803 3.12027 6.31458 3.74871 6.54028 4.35356C6.62998 4.59218 6.64939 4.8515 6.59622 5.10081C6.54305 5.35012 6.41952 5.57897 6.24028 5.76023L5.39361 6.60689C6.34265 8.27592 7.72458 9.65786 9.39361 10.6069L10.2403 9.76023C10.4215 9.58099 10.6504 9.45746 10.8997 9.40429C11.149 9.35112 11.4083 9.37053 11.6469 9.46023C12.2518 9.68593 12.8802 9.84248 13.5203 9.92689C13.8441 9.97258 14.1399 10.1357 14.3513 10.3852C14.5627 10.6348 14.6751 10.9533 14.6669 11.2802Z' stroke='#0F1F3F' stroke-linecap='round' stroke-linejoin='round')
+                defs
+                  clippath#clip0_5_127
+                    rect(width='16' height='16' fill='white')
+              span 
+                a(href="tel:88314223080") 8 831 422-30-80 
+            button.header__callback.form__callback-open
+              span Обратный звонок
+    .header__bottom
+      .header__wrapper
+        a.header__logo(href="/")
+          img.header__logo--white(src="img/logo-white.svg", alt="")
+          img.header__logo--black(src="img/logo-black.svg", alt="")
+
+        nav.header__menu.header__menu--bottom
+          ul
+            li
+              button.header__dropdown-btn
+                span Операции
+                svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                  path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+              .header__dropdown
+                .header__dropdown-inner
+                  +tabs(["Пластическая хирургия","Гинекология", "Общая хирургия", "Травматология и ортопедия", "Флебология", "Лор-хирургия"], "horizontal, column")
+                    .tabs__content-block
+                      .header__dropdown-column_list
+                        ul
+                          li
+                            a(href="") Пластика лица
+                          li
+                            a(href="") Ринопластика
+                          li
+                            a(href="") Круговая подтяжка лица (фейслифтинг)
+                          li
+                            a(href="") Подтяжка зон лица
+                          li
+                            a(href="") Нитевой лифтинг
+                          li
+                            a(href="") Липофилинг
+                          li
+                            a(href="") Радиочастотная липосакция аппаратом FaceTite
+                          li
+                            a(href="") Блефаропластика (подтяжка век)
+                          li
+                            a(href="") Хейлопластика (коррекция формы и размера губ)
+                          li
+                            a(href="") Отопластика (коррекция ушей)
+                        ul
+                          li
+                            a(href="") Пластика тела
+                          li
+                            a(href="") Операции по маммопластике
+                          li
+                            a(href="") Абдоминопластика  (коррекция живота)
+                          li
+                            a(href="") Радиочастотная липосакция аппаратом BodyTite
+                          li
+                            a(href="") Подтяжка избыточной кожи рук и ног
+                          li
+                            a(href="") Протезирование голеней
+                          li
+                            a(href="") Интимная пластика
+                          li
+                            a(href="") Гинекомастия у мужчин
+                        ul
+                          li
+                            a(href="") Пластика лица
+                          li
+                            a(href="") Ринопластика
+                          li
+                            a(href="") Круговая подтяжка лица (фейслифтинг)
+                          li
+                            a(href="") Подтяжка зон лица
+                          li
+                            a(href="") Нитевой лифтинг
+                          li
+                            a(href="") Липофилинг
+                          li
+                            a(href="") Радиочастотная липосакция аппаратом FaceTite
+                          li
+                            a(href="") Блефаропластика (подтяжка век)
+                          li
+                            a(href="") Хейлопластика (коррекция формы и размера губ)
+                          li
+                            a(href="") Отопластика (коррекция ушей)
+                        ul
+                          li
+                            a(href="") Пластика тела
+                          li
+                            a(href="") Операции по маммопластике
+                          li
+                            a(href="") Абдоминопластика  (коррекция живота)
+                          li
+                            a(href="") Радиочастотная липосакция аппаратом BodyTite
+                          li
+                            a(href="") Подтяжка избыточной кожи рук и ног
+                          li
+                            a(href="") Протезирование голеней
+                          li
+                            a(href="") Интимная пластика
+                          li
+                            a(href="") Гинекомастия у мужчин
+                    .tabs__content-block Содержимое второго блока
+                    .tabs__content-block Содержимое третьего блока
+                    .tabs__content-block Содержимое четвертого блока
+                  +link("Стоимость операции", true, "right")
+              .dropdown__submenu
+                .dropdown__submenu-back
+                a.dropdown__submenu-title(href="#")
+                ul
+                  li
+                    button.header__dropdown-btn
+                      span Пластическая хирургия
+                      svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                        path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+                    .dropdown__submenu
+                      .dropdown__submenu-back
+                      a.dropdown__submenu-title(href="#")
+                      ul
+                        li
+                          button.header__dropdown-btn
+                            span Пластика лица
+                            svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                              path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+                          .dropdown__submenu
+                            .dropdown__submenu-back
+                            a.dropdown__submenu-title(href="#")
+                            ul
+                              li
+                                a(href="") Ринопластика
+                              li
+                                a(href="") Круговая подтяжка лица (фейслифтинг)
+                              li
+                                a(href="") Подтяжка зон лица
+                              li
+                                a(href="") Нитевой лифтинг
+                        li
+                          button.header__dropdown-btn
+                            span Пластика тела
+                            svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                              path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+                          .dropdown__submenu
+                            .dropdown__submenu-back
+                            a.dropdown__submenu-title(href="#")
+                            ul
+                              li
+                                a(href="") Операции по маммопластике
+                              li
+                                a(href="") Абдоминопластика (коррекция живота)
+                              li
+                                a(href="") Липосакция
+                              li
+                                a(href="") Радиочастотная липосакция аппаратом BodyTite
+                  li
+                    button.header__dropdown-btn
+                      span Гинекология
+                      svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                        path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+                    .dropdown__submenu
+                      .dropdown__submenu-back
+                      a.dropdown__submenu-title(href="#")
+                      ul
+                        li
+                          a(href="") Гистероскопия
+                        li
+                          button.header__dropdown-btn
+                            span Операция при заболеваниях шейки матки
+                            svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                              path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+                          .dropdown__submenu
+                            .dropdown__submenu-back
+                            a.dropdown__submenu-title(href="#")
+                            ul
+                              li
+                                a(href="") Эксцезия шейки матки
+                              li
+                                a(href="") Конизация шейки матки
+                              li
+                                a(href="") Биопсия шейки матки
+                        li
+                          a(href="") Лапароскопическая операция при бесплодии
+                        li
+                          a(href="") Интимная пластика
+            li
+              a(href="/surgeons.html") Хирурги
+            li
+              button.header__dropdown-btn
+                span Клиника
+                svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                  path(d='M8 11.0876L8.69771 11.804L8 12.4835L7.30229 11.804L8 11.0876ZM2.44771 4.28411L8.69771 10.3712L7.30229 11.804L1.05229 5.71687L2.44771 4.28411ZM7.30229 10.3712L13.5523 4.28411L14.9477 5.71687L8.69771 11.804L7.30229 10.3712Z' fill='#0F1F3F')
+              .header__dropdown
+                .header__dropdown-inner
+                  ul.header__dropdown-column_list
+                    li
+                      a(href="/news.html") Новости
+                    li
+                      a(href="/articles.html") Статьи
+                    li
+                      a(href="/stock.html") Акции
+                    li
+                      a(href="/policy.html") Юр. информация
+              .dropdown__submenu
+                .dropdown__submenu-back
+                a.dropdown__submenu-title(href="#")
+                ul
+                  li
+                    a(href="/clinic.html") О Клинике
+                  li
+                    a(href="/recovery.html") Быстрая реабилитация
+                  li
+                    a(href="") Оборудование
+                  li
+                    a(href="") Лицензии
+            li
+              a(href="/review.html") Отзывы
+            li
+              a(href="/contacts.html") Контакты
+        button.header__call.form__enroll-open
+          span Записаться на прием
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z"/>
+          </svg>
+    +search()
+    +form-popup("form-enroll__popup","Запись на приём", "Заполните данные и наш менеджер свяжется с вами для согласования записи на прием")
+      +input("form__name", "text", "Имя и фамилия", "Укажите имя и фамилию", true)
+      +input("form__tel", "tel", "Телефон", "Укажите телефон", true)
+      +input("form__textarea", "textarea", "Интересующая процедура или специалист", "Укажите интересующую процедуру или специалиста", true)
+    +form-popup("form-callback__popup","Обратный звонок", "Оставьте свои контактные данные и мы свяжемся с вами сами в ближайшее время")
+      +input("form__name", "text", "Имя и фамилия", "Укажите имя и фамилию")
+      +input("form__tel", "tel", "Телефон", "Укажите телефон")
+    +time-popup()
+    +map-popup()
+

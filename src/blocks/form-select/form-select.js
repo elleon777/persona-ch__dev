@@ -2,12 +2,18 @@
 
 import $ from "jquery";
 
+export default function checkValidateSelect(selector) {
+  return selector
+    .find("select[required]")
+    .toArray()
+    .every((select) => $(select).hasClass("valid"));
+}
+
 $(function () {
   if ($("select").length) {
     $("select").each(function () {
       var $this = $(this),
         numberOfOptions = $(this).children("option").length;
-
       $this.addClass("select-hidden");
       $this.wrap('<div class="select"></div>');
       $this.after(
@@ -54,6 +60,9 @@ $(function () {
 
       $listItems.on("click", function (e) {
         e.stopPropagation();
+        if (!$this.hasClass("valid")) {
+          $this.addClass("valid");
+        }
         $styledSelect
           .find(".select-styled__title")
           .text($(this).text())
@@ -62,6 +71,9 @@ $(function () {
         $this.val($(this).attr("rel"));
         $list.removeClass("open");
         $(this).closest(".select").removeClass("expand");
+        $this.children("option").eq(0).attr("disabled", false);
+        $this.children("option").eq($(this).index()).prop("selected", true);
+        $this.trigger("change");
       });
 
       $(document).on("click", function () {

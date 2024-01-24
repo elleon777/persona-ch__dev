@@ -18,6 +18,6 @@ mixin form-select(title, options)
       }
     }
 
-  select(data-title=title)
+  select(data-title=title required)
     each item in options
       option(value="")= item

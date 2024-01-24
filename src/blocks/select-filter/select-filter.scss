@@ -12,8 +12,13 @@
     @include s1;
     color: $f-primary;
     cursor: pointer;
-    &::before {
-      @include border-dots();
-    }
+
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: $f-primary;
+    text-underline-offset: 15px;
+    // &::before {
+    //   @include border-dots();
+    // }
   }
 }

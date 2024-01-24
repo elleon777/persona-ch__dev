@@ -1,0 +1,103 @@
+// В этом файле должны быть стили для БЭМ-блока alert, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.alert {
+  $block-name: &; // #{$block-name}__element
+
+  background: rgba(73, 172, 50, 0.20);
+  backdrop-filter: blur(20px);
+  z-index: 1;
+
+  @media (min-width: 1024px) {
+    position: fixed;
+    right: 0;
+    top: 20%;
+  }
+
+  &__inner {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    @media (min-width: 1024px) {
+
+      padding: 16px 40px 16px 16px;
+    }
+  }
+
+  &__close {
+    width: 16px;
+    height: 16px;
+    order: 1;
+
+
+
+    @media (min-width: 1024px) {
+      order: initial;
+    }
+
+    @media (hover: hover) {
+      cursor: pointer;
+
+      svg rect {
+        transition: .3s;
+      }
+
+      &:hover {
+        svg rect {
+          fill: $f-primary;
+        }
+      }
+    }
+  }
+
+  &__link {
+    @include s5;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    @media (hover: hover) {
+      span {
+        transition: .3s;
+      }
+
+      svg path {
+        transition: .3s;
+      }
+
+      &:hover {
+        span {
+          color: $f-primary;
+        }
+
+        svg path {
+          stroke: $f-primary;
+        }
+      }
+    }
+
+    span {
+      color: #fff;
+      max-width: 280px;
+
+      @media (min-width: 1600px) {
+        max-width: 350px;
+      }
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+      }
+    }
+
+  }
+}

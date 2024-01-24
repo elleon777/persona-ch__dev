@@ -2,14 +2,14 @@
 
 mixin main-page(text, mods)
   .main-page
-    .swiper-wrapper
+    .swiper-wrapper 
       .main-page__wrapper.swiper-slide
         video.video-bg(loop muted) 
           source(src="img/mainPage1.mp4" type="video/mp4")
-        .main-page__mobile-bg(style="background-image:url('img/mainPage1-mobile.jpg')")
-          //- img(src="img/mainPage1-mobile.jpg")
         .main-page__inner
           .main-page__left
+            .main-page__mobile-bg
+                img(src="img/mainPage1-mobile.jpg")
             .main-page__title
               h1 Невероятные хирурги, ответственные за результат
             .main-page__link
@@ -20,10 +20,10 @@ mixin main-page(text, mods)
       .main-page__wrapper.swiper-slide
         video.video-bg(loop muted) 
           source(src="img/mainPage2.mp4" type="video/mp4")
-        .main-page__mobile-bg(style="background-image:url('img/mainPage2-mobile.jpg')")
-          //- img(src="img/mainPage2-mobile.jpg")
         .main-page__inner
           .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage2-mobile.jpg")
             .main-page__title
               h2 Широкий <br> спектр <br> проводимых <br> операций
           aside.main-page__right.main-page__right--full
@@ -40,10 +40,10 @@ mixin main-page(text, mods)
       .main-page__wrapper.swiper-slide
         video.video-bg(loop muted) 
           source(src="img/mainPage3.mp4" type="video/mp4")
-        .main-page__mobile-bg(style="background-image:url('img/mainPage3-mobile.jpg')")
-          //- img(src="img/mainPage3-mobile.jpg")
         .main-page__inner
           .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage3-mobile.jpg")
             .main-page__title
               h2 Крупнейшая хирургия с&nbsp;современным оборудованием
             .main-page__link
@@ -63,10 +63,10 @@ mixin main-page(text, mods)
       .main-page__wrapper.swiper-slide
         video.video-bg(loop muted) 
           source(src="img/mainPage4.mp4" type="video/mp4")
-        .main-page__mobile-bg(style="background-image:url('img/mainPage4-mobile.jpg')")
-          //- img(src="img/mainPage4-mobile.jpg")
         .main-page__inner
           .main-page__left
+            .main-page__mobile-bg
+              img(src="img/mainPage4-mobile.jpg")
             .main-page__title
               h2 Нацеленность на быструю реабилитацию
             .main-page__link

@@ -115,8 +115,10 @@
       @media (min-width: 1336px) {
         padding: 26px 40px;
       }
-      &:hover {
-        color: $f-primary;
+      @media (hover: hover) {
+        &:hover {
+          color: $f-primary;
+        }
       }
     }
   }

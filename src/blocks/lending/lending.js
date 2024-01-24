@@ -35,7 +35,6 @@ function isSlideInWrapper() {
 export const lendingGallery = new Swiper(".lending-gallery__inner", {
   slidesPerView: "auto",
   spaceBetween: 20,
-  autoHeight: true,
   draggable: true,
   on: {
     init: () => {
@@ -127,47 +126,51 @@ $(function () {
               $(this).offset().left -
               stage.width() / 2,
           });
-        } else {
-          stage.css("pointer-events", "none");
         }
       });
+    $(".lending-infographics__popup-item").each(function (index) {
+      if (!$(this).children().length) {
+        $(".lending-infographics__stages")
+          .children()
+          .eq(index)
+          .css("pointer-events", "none");
+      }
+    });
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            let lastScrollTop = 0;
             const scrolledToBlock = $(this).scrollTop();
-            $(window).on("scroll", function () {
+            const boundingClientRect = entry.boundingClientRect.top;
+            const height = $(window).height();
+            const current = height - boundingClientRect;
+            const scrolledWrapper = $(".lending-infographics__wrapper");
+            const scrolledWrapperWidth = scrolledWrapper
+              .children(".lending-infographics__inner")
+              .width();
+            const calcScrolled = () => {
               const winScroll =
                 document.body.scrollTop ||
-                document.documentElement.scrollTop - scrolledToBlock;
-              const height =
-                document.documentElement.scrollHeight -
-                document.documentElement.clientHeight;
-
+                document.documentElement.scrollTop - scrolledToBlock + current;
               let scrolled = (winScroll / height) * 100;
-
-              var posit = $(this).scrollTop();
-              if (posit > lastScrollTop && $(window).width() < 991) {
-                $(".lending-infographics__wrapper")[0].scrollLeft +=
-                  scrolled / 9;
-              } else {
-                $(".lending-infographics__wrapper")[0].scrollLeft -=
-                  scrolled / 9;
+              if ($(window).width() < 991) {
+                scrolledWrapper[0].scrollLeft =
+                  (scrolledWrapperWidth / 100) * scrolled -
+                  scrolledWrapper.width() / 2;
               }
-              lastScrollTop = posit;
-
               $(".lending-infographics")
                 .find(".progress")
-                .each(function () {
-                  $(this).css(
-                    "width",
-                    Number(($(this).attr("data-multiplyer") || 2) * scrolled) +
-                      "%"
-                  );
+                .each(function (index) {
+                  if (index === 0) {
+                    $(this).css("width", `${+scrolled / 2.75}%`);
+                    return;
+                  }
+                  $(this).css("width", `${+scrolled}%`);
                 });
-            });
+            };
+            calcScrolled();
+            $(window).on("scroll", calcScrolled);
             observer.unobserve($(".lending-infographics")[0]);
           }
         });
@@ -186,55 +189,54 @@ $(function () {
       .on("click", function (e) {
         const popupItem = $(".lending-infographics__popup-item");
         const currentIndex = $(this).index();
-        const currentPopup =
-          popupItem.eq(currentIndex).prev().length !== 0
-            ? popupItem.eq(currentIndex).prev()
-            : popupItem.last();  
+        const currentPopup = popupItem.eq(currentIndex);
+        // const currentPopup =
+        //   popupItem.eq(currentIndex).prev().length !== 0
+        //     ? popupItem.eq(currentIndex).prev()
+        //     : popupItem.last();
 
-        
-      
-          if ($(window).width() < 991) {
-            currentPopup
-              .closest(".lending-infographics__popup")
-              .addClass("active");
-            $(this).addClass("active");
-            currentPopup.show();
-            $("body").addClass("no-scroll");
-            $("header").hide();
-          } else {
-            const popupPosition = {
-              left:
-                $(e.currentTarget).offset().left +
-                $(e.currentTarget).outerWidth() / 2 -
-                currentPopup.outerWidth() / 2,
-              top:
-                $(e.currentTarget).offset().top -
-                $(".lending__banner").height() +
-                40,
-            };
-            if (popupPosition.left < 0) {
-              popupPosition.left = 0;
-              currentPopup.find("span").css("left", e.pageX);
-            }
-            $(this).siblings().removeClass("active");
-            $(this).addClass("active");
-            $(".lending-infographics__popup-item").attr("style", "");
-            currentPopup.show().css(popupPosition);
-
-            if (isOverflowed($("body")[0])) {
-              popupPosition.left =
-                popupPosition.left -
-                (currentPopup.outerWidth() -
-                  ($("body").width() - popupPosition.left));
-              currentPopup.css(popupPosition);
-              currentPopup
-                .find("span")
-                .css(
-                  "left",
-                  currentPopup.outerWidth() - $(this).width() + e.offsetX - 70
-                );
-            }
+        if ($(window).width() < 991) {
+          currentPopup
+            .closest(".lending-infographics__popup")
+            .addClass("active");
+          $(this).addClass("active");
+          currentPopup.show();
+          $("body").addClass("no-scroll");
+          $("header").hide();
+        } else {
+          const popupPosition = {
+            left:
+              $(e.currentTarget).offset().left +
+              $(e.currentTarget).outerWidth() / 2 -
+              currentPopup.outerWidth() / 2,
+            top:
+              $(e.currentTarget).offset().top -
+              $(".lending__banner").height() +
+              40,
+          };
+          if (popupPosition.left < 0) {
+            popupPosition.left = 0;
+            currentPopup.find("span").css("left", e.pageX);
           }
+          $(this).siblings().removeClass("active");
+          $(this).addClass("active");
+          $(".lending-infographics__popup-item").attr("style", "");
+          currentPopup.css(popupPosition).fadeIn();
+
+          if (isOverflowed($("body")[0])) {
+            popupPosition.left =
+              popupPosition.left -
+              (currentPopup.outerWidth() -
+                ($("body").width() - popupPosition.left));
+            currentPopup.css(popupPosition);
+            currentPopup
+              .find("span")
+              .css(
+                "left",
+                currentPopup.outerWidth() - $(this).width() + e.offsetX - 70
+              );
+          }
+        }
       });
     $(document).on("click", function (e) {
       if (
@@ -242,7 +244,7 @@ $(function () {
         !$(".lending-infographics__stages").find("span").is(e.target)
       ) {
         $(".lending-infographics__stages").find("span").removeClass("active");
-        $(".lending-infographics__popup-item").hide();
+        $(".lending-infographics__popup-item").fadeOut();
       }
     });
     $(".lending-infographics__popup-item").on("click", "span", function name() {

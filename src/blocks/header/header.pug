@@ -19,6 +19,7 @@ mixin header(mods)
     }
 
   header.header(class=allMods)&attributes(attributes)
+    +alert()
     .header__mobile
       .header__wrapper
         a.header__logo(href="/")
@@ -60,7 +61,7 @@ mixin header(mods)
               path(d='M8 8.25C8.69036 8.25 9.25 7.69036 9.25 7C9.25 6.30964 8.69036 5.75 8 5.75C7.30964 5.75 6.75 6.30964 6.75 7C6.75 7.69036 7.30964 8.25 8 8.25Z' fill='#0F1F3F' stroke='#0F1F3F' stroke-linecap='round' stroke-linejoin='round')
             span Б. Печерская, д. 26
           button.header__time.time-popup__open
-            span Сегодня работаем до 19:00
+            span Сейчас не работаем, откроемся в 19:00
           .header__inner
             button.header__phone
               svg(width='16' height='16' viewbox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg')

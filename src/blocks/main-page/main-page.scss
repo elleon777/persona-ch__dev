@@ -12,32 +12,40 @@
   &__title {
     @include h1;
     color: $f-white !important;
-
-    @media (max-width: 1366px) {
-      margin-bottom: 24px;
-    }
     &.fadeInUpHide {
       animation: fadeInUpHide 0.5s both !important;
-      animation-delay: 0.4s;
+      animation-delay: 0.2s;
     }
   }
   &__link {
-    margin-top: 32px;
+    max-width: 550px;
+    margin-top: 16px;
+    @media (min-width: 600px) {
+      margin-top: 24px;
+    }
+    @media (min-width: 1600px) {
+      margin-top: 32px;
+    }
     &.fadeInUpHide {
       animation: fadeInUpHide 0.5s both !important;
-      animation-delay: 0.5s;
+      animation-delay: 0.3s;
+    }
+    .link {
+      svg {
+        margin-left: 8px;
+      }
     }
   }
   &__wrapper {
     width: 100%;
-    // &:nth-child(1) {
-    //   .main-page__left {
-    //     margin-bottom: 40px;
-    //     @media (min-width: 1366px) {89
-    //       margin-bottom: 62px;
-    //     }
-    //   }
-    // }
+    overflow: hidden;
+
+    &--show {
+      animation: fadeInBackVideo 1s forwards;
+    }
+    &--hide {
+      animation: fadeInHideBackVideo 1s forwards;
+    }
     @media (min-width: 1921px) {
       .container {
         position: relative;
@@ -48,44 +56,45 @@
     }
     @media (max-width: 991px) {
       position: relative;
+      clip-path: inset(0 0 0 0);
       & > .container {
         gap: 0;
         padding: 0;
       }
+      &:not(:last-child) {
+        height: 100vh;
+      }
       &:first-child {
         height: calc((var(--vh, 1vh) * 100));
-        #{$block-name}__left {
-          height: 100%;
-        }
+      }
+      #{$block-name}__left {
+        height: 100%;
       }
     }
     &:first-child {
       #{$block-name}__left {
         .link {
           @include s1;
-          display: block;
         }
       }
     }
     &:last-child {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      @include blur(20px);
-    }
-    .slide-inner {
-      width: 100%;
-      height: calc((var(--vh, 1vh) * 100));
+      .main-page__wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include blur(20px);
+      }
     }
     &.swiper-slide-active {
       #{$block-name}__title {
         animation: fadeInUp 0.5s both;
-        animation-delay: 0.4s;
+        animation-delay: 0.2s;
         animation-timing-function: $transitionTime;
       }
       #{$block-name}__link {
         animation: fadeInUp 0.5s both;
-        animation-delay: 0.5s;
+        animation-delay: 0.3s;
         animation-timing-function: $transitionTime;
       }
       #{$block-name}__right-item {
@@ -94,6 +103,13 @@
         animation-timing-function: $transitionTime;
       }
     }
+  }
+  &__wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
   }
   &__inner {
     @include container;
@@ -111,8 +127,6 @@
       background-image: none !important;
     }
     @media (max-width: 991px) {
-      position: sticky;
-      top: 0;
       grid-column: 8 span;
       height: 600px;
       clip-path: inset(0 0 0 0);
@@ -128,8 +142,8 @@
       padding: 16px;
     }
     .link {
-      max-width: 550px;
-      align-items: center;
+      position: relative;
+      display: inline;
       @include s2;
       svg path {
         fill: $f-white;
@@ -137,12 +151,29 @@
       &-text {
         color: $f-white !important;
       }
-      &:hover {
-        svg path {
-          fill: $f-primary;
-        }
-        .link-text {
-          color: $f-primary !important;
+      &:after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        transform: translateY(6px);
+        display: inline-block;
+        mask: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='transform:rotate(180deg)'%3E%3Cpath d='M3 12L2.28362 12.6977L1.60409 12L2.28362 11.3023L3 12ZM12.8471 3.32271L3.71638 12.6977L2.28362 11.3023L11.4143 1.92729L12.8471 3.32271ZM3.71638 11.3023L12.8471 20.6773L11.4143 22.0727L2.28362 12.6977L3.71638 11.3023ZM3 11L23.25 11L23.25 13L3 13L3 11Z' fill='%23fff'/%3E%3C/svg%3E")
+          no-repeat 50% 50%;
+        mask-size: cover;
+        background-color: #fff;
+        transition: 0.3s;
+      }
+      @media (hover: hover) {
+        &:hover {
+          &:after {
+            background-color: $f-primary;
+          }
+          svg path {
+            fill: $f-primary;
+          }
+          .link-text {
+            color: $f-primary !important;
+          }
         }
       }
     }
@@ -155,7 +186,7 @@
     @include blur(10px);
     display: grid;
     grid-template-columns: 1fr;
-    animation: fadeIn 0.5s both 0.5s $transitionTime;
+    animation: fadeIn 0.5s both 0.3s $transitionTime;
 
     max-width: none;
     position: static;
@@ -176,7 +207,7 @@
     }
     &.fadeInHide {
       animation: fadeInHide 0.5s both !important;
-      animation-delay: 0.5s;
+      animation-delay: 0.3s;
     }
     &--full {
       @media (min-width: 992px) {
@@ -202,7 +233,7 @@
           }
         }
         .link {
-          @media (min-width: 992px) {
+          @media (hover: hover) {
             &:hover {
               .link-text {
                 color: $f-primary;
@@ -243,10 +274,10 @@
       }
     }
     &-item {
-      padding: 16px;
+      padding: 16px 24px;
       &:only-child {
-        padding: 16px;
-        @media (min-width: 992px) {
+        padding: 18px 24px;
+        @media (hover: hover) {
           transition: 0.3s;
           &:hover {
             svg {
@@ -286,8 +317,8 @@
       @media (max-width: 991px) and (min-width: 481px) {
         &:not(a) {
           display: grid;
-          grid-template-columns: auto 1fr;
-          grid-template-rows: 1fr 1fr;
+          grid-template-columns: auto auto 1fr;
+          grid-template-rows: 1fr;
           align-items: center;
         }
         &:not(a) > .main-page__right-number:nth-child(1) {
@@ -298,13 +329,18 @@
         }
         &:not(a) > .main-page__right-title:nth-child(2) {
           grid-column: 2;
-          grid-row: 2 span;
+          grid-row: 3 span;
         }
         &:not(a) > *:nth-child(3) {
-          grid-column: 2;
+          grid-column: 3;
+          margin-left: 32px;
+          justify-self: center;
         }
       }
       @media (max-width: 480px) {
+        &:not(a) {
+          grid-template-rows: 1fr 1fr;
+        }
         &:not(a):not(:first-child) {
           display: flex;
           align-items: center;
@@ -334,7 +370,9 @@
           &__right {
             &-title {
               grid-column: 2;
-              align-self: center;
+              @media (min-width: 1024px) {
+                align-self: center;
+              }
             }
             &-text {
               grid-column: 1 / 2 span;
@@ -350,17 +388,22 @@
         justify-content: space-between;
         text-align: left;
         &--refresh {
-          margin-top: 16px;
-          @media (max-width: 991px) {
+          @media (min-width: 992px) {
+            margin-top: 16px;
+          }
+          @media (max-width: 480px) {
             margin-top: 8px;
           }
           .link-text {
-            color: $f-primary;
+            color: $f-primary !important;
           }
-          svg path {
-            fill: $f-primary;
+          svg {
+            margin: 0;
+            path {
+              fill: $f-primary !important;
+            }
           }
-          @media (min-width: 992px) {
+          @media (hover: hover) {
             &:hover {
               .link-text {
                 color: $f-hover;
@@ -384,6 +427,12 @@
       color: $f-white;
       display: inline-flex;
       align-items: baseline;
+      @media (min-width: 600px) {
+        margin-right: 24px;
+      }
+      @media (max-width: 991px) {
+        @include font(60px, 60px, 300);
+      }
       span {
         @include font(40px, 60px, 300);
         @media (min-width: 1600px) {
@@ -393,9 +442,6 @@
       }
       img {
         margin-bottom: 8px;
-      }
-      @media (max-width: 991px) {
-        @include font(60px, 60px, 300);
       }
     }
     &-title {
@@ -414,16 +460,17 @@
     top: 0;
     bottom: 0;
     z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: background-position;
+    height: 100vh;
+
     @media (min-width: 991px) {
       display: none;
     }
-    img {
-      width: 100%;
-      // height: 100%;
-      height: calc(var(--vh, 1vh) * 100);
-      height: calc((var(--vh, 1vh) * 100) + 80px);
-      object-fit: cover;
-      object-position: top;
-    }
   }
+}
+.swiper-slide-active {
+  z-index: 3;
 }

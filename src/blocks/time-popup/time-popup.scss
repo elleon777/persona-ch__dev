@@ -14,7 +14,7 @@
   @include blur(40px);
   z-index: 999;
   padding: 16px;
-  @media (min-width: 768px) {
+  @media (min-width: 400px) {
     padding: 40px;
   }
   @media (max-width: 991px) {
@@ -42,32 +42,45 @@
       --iconSize: 24px;
       width: var(--iconSize);
       height: var(--iconSize);
-      @media (min-width: 1366px) {
+      @media (min-width: 400px) {
         --iconSize: 32px;
       }
     }
   }
   &__title {
-    @include h2;
     color: $f-white;
     flex-grow: 1;
     height: 100%;
-    max-width: 150px;
+    max-width: 200px;
+    @include font(22px, 28px, 400);
+    @media (min-width: 400px) {
+      max-width: 150px;
+      @include font(40px, 48px, 400);
+    }
   }
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 24px;
+    @media (min-width: 400px) {
+      gap: 40px;
+    }
   }
   &__item {
   }
   &__day {
-    @include s2;
     color: $f-primary;
     margin-bottom: 8px;
+    @include font(18px, 24px, 400);
+    @media (min-width: 400px) {
+      @include font(24px, 32px, 400);
+    }
   }
   &__time {
-    @include h2;
+    @include font(22px, 28px, 300);
     color: $f-white;
+    @media (min-width: 400px) {
+      @include font(40px, 48px, 300);
+    }
   }
 }

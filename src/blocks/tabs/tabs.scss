@@ -29,7 +29,7 @@
         &.active {
           color: $f-primary !important;
         }
-        @media (min-width: 992px) {
+        @media (hover: hover) {
           &:hover {
             color: $f-primary !important;
           }
@@ -38,10 +38,21 @@
     }
   }
   &__content {
+    position: relative;
+    overflow: hidden;
     &-block {
-      display: none;
+      // display: none;
+      position: absolute;
+      inset: 0;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
       &.active {
-        display: block;
+        // display: block;
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        z-index: 0;
       }
     }
   }

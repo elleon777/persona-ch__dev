@@ -10,6 +10,7 @@ let config = {
   addStyleBefore: [
     "src/scss/variables.scss",
     "src/scss/mixins.scss",
+    "src/scss/keyframes.scss",
     "src/scss/main.scss",
     "src/scss/fonts.scss",
     "swiper/swiper-bundle.min.css",

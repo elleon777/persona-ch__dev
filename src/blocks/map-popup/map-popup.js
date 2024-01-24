@@ -17,8 +17,8 @@ function yMapInit() {
     [56.32503506840652, 44.023467499999995],
     {},
     {
-      iconLayout: "default#image",
-      iconImageHref: "../img/pin.svg",
+      
+      iconImageHref: "/local/templates/persona_ch/img/pin.svg",
       // iconImageSize: [320, 400],
       // iconImageOffset: [-320, -400],
     }
@@ -34,7 +34,6 @@ function yMapInit() {
   });
   $(".map-popup__zoom-in").on("click", () => map.setZoom(map.getZoom() + 1));
   $(".map-popup__zoom-out").on("click", () => map.setZoom(map.getZoom() - 1));
-  $(".map-popup__route").on("click", yMapRoute);
 }
 function waitForTilesLoad(layer) {
   return new ymaps.vow.Promise(function (resolve, reject) {
@@ -68,27 +67,7 @@ function getTileContainer(layer) {
   }
   return null;
 }
-function yMapRoute() {
-  ymaps
-    .route(
-      [
-        "Королев",
-        { type: "viaPoint", point: "Мытищи" },
-        "Химки",
-        { type: "wayPoint", point: [55.811511, 37.312518] },
-      ],
-      {
-        mapStateAutoApply: true,
-      }
-    )
-    .then(function (route) {
-      route.getPaths().options.set({
-        strokeColor: "0000ffff",
-        opacity: 0.9,
-      });
-      map.geoObjects.add(route);
-    });
-}
+
 $(function () {
   let isMapLoaded = false;
   $(".map-popup__open").on("click", function () {

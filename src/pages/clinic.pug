@@ -20,18 +20,19 @@ block content
     video(loop muted autoplay) 
       source(src="img/mainPage2.mp4" type="video/mp4")
     .lending-clinic__number-text
-      span 8 300
+      span 8
+      span 300
   p.h1.observer операций за все время
   p.p3.observer С каждым клиентом прорабатываем индивидуальную программу лечения и профилактики. Все лечения и обследования проводятся в строгом соответствии стандартам оказания медицинской помощи. Для нас ценно время наших клиентов, поэтому весь лечебно-диагностический процесс будет организован в кратчайшие сроки.
   +link("Все операции", true,"right, observer")
   .lending-clinic__mid-number.observer <span>4</span> <p>современные операционные</p>     
   .lending-clinic__images
-    .lending-clinic__images-left.rellax(data-rellax-speed="0")
+    .lending-clinic__images-left.rellax(data-rellax-speed="-1")
       .lending-clinic__images-block__img
         img(src="img/clinic2.png", alt="")
       .lending-clinic__images-block__img
         img(src="img/clinic1.png", alt="")
-    .lending-clinic__images-right.rellax(data-rellax-speed="0.5")
+    .lending-clinic__images-right.rellax(data-rellax-speed="1")
       .lending-clinic__images-block__img
         img(src="img/clinic4.png", alt="")
       .lending-clinic__images-block__img
@@ -57,7 +58,7 @@ block content
       .lending-clinic__desc Меньший болевой синдром, низкий риск осложнений, короткий срок реабилитации, быстрое восстановление всех функций организма.
   p.p2.observer В Центре хирургии и эндоскопии «Персона» внедрена стратегия оперативного лечения пациентов Fast Track, которая значительно ускоряет послеоперационное восстановление пациентов.
   +link("Подробнее про быструю реабилитацию", true,"right, observer")
-  .lending-clinic__licence
+  .lending-clinic__licence.observer
     .lending-clinic__licence-content
       .lending-clinic__licence-title Все операции только в рамках лицензии
       .lending-clinic__licence-desc Центр хирургии и эндоскопии «Персона» оказывает свои услуги на основании всех необходимых лицензий, выданных Министерством Здравоохранения РФ

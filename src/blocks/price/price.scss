@@ -9,6 +9,7 @@
   overflow: hidden;
   background: inherit;
   .dot-leaders {
+    // position: absolute;
     @media (max-width: 1024px) {
       display: none;
     }
@@ -21,7 +22,7 @@
       overflow: hidden;
       white-space: nowrap;
       color: $f-black;
-      opacity: 0.8;
+      opacity: 0.5;
       @media (max-width: 1024px) {
         content: none;
       }
@@ -33,6 +34,11 @@
       background: inherit;
       &-prop {
         background: inherit;
+        span {
+          position: relative;
+          background: inherit;
+          z-index: 1;
+        }
       }
       &-value {
         background: inherit;
@@ -45,6 +51,8 @@
   &__item {
     display: grid;
     grid-template-columns: auto 1fr auto;
+    // display: flex;
+    // justify-content: space-between;
     align-items: end;
     margin-bottom: 32px;
     &:not(:first-child) {
@@ -71,7 +79,6 @@
 
     &-prop {
       color: $f-black;
-      max-width: 500px;
     }
     &-value {
       color: $f-black;

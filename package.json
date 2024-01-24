@@ -16,6 +16,7 @@
     "start": "gulp",
     "wlib": "cross-env BUILD_LIBRARY=true gulp",
     "build": "cross-env MODE=production gulp build",
+    "buildjs": "cross-env MODE=production gulp buildjs",
     "lint-staged": "lint-staged"
   },
   "browserslist": [
@@ -86,6 +87,8 @@
     "baron": "^3.0.3",
     "choices.js": "^9.0.1",
     "closest": "0.0.1",
+    "gsap": "^3.12.2",
+    "inputmask": "^5.0.8",
     "jquery": "^3.6.1",
     "sass": "^1.62.1",
     "svg4everybody": "^2.1.8",

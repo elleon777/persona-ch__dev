@@ -37,9 +37,11 @@
         fill: $ui-primary;
       }
     }
-    &:hover {
-      svg path {
-        fill: $ui-hover;
+    @media (hover: hover) {
+      &:hover {
+        svg path {
+          fill: $ui-hover;
+        }
       }
     }
   }

@@ -66,13 +66,15 @@ block content
         button.contacts__button.form__feedback-open Форма обратной связи
 block form
   +form-popup("form-feedback__popup","Обратная связь", "Заполните форму, чтобы наш менеджер смог связаться с вами в случае необходимости.")
-    select(data-title="Тип обращения")
-      option(value="")  Претензия
-      option(value="")  Благодарность
-      option(value="")  Вопрос
-    +input("form__name", "text", "Имя и фамилия")
-    +input("form__text", "text", "Телефон")
-    +input("form__mail", "email", "Эл. почта")
-    +input("form__review", "textarea", "Комментарий")
+    
+    //- select(data-title="Тип обращения")
+    //-   option(value="")  Претензия
+    //-   option(value="")  Благодарность
+    //-   option(value="")  Вопрос
+    +form-select("Тип обращения", ["Претензия", "Благодарность", "Вопрос"])
+    +input("form__name", "text", "Имя и фамилия", "Укажите имя и фамилию", true)
+    +input("form__tel", "tel", "Телефон","", true)
+    +input("form__mail", "email", "Эл. почта","", true)
+    +input("form__review", "textarea", "Комментарий","", true)
     +input("form__file", "file", "Прикрепить файл")
 

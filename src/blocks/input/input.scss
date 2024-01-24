@@ -5,7 +5,7 @@
 .input {
   $block-name: &; // #{$block-name}__element
   position: relative;
-  @media (min-width: 992px) {
+  @media (hover: hover) {
     &:hover {
       #{$block-name}-label {
         color: $f-primary;
@@ -15,10 +15,12 @@
       }
     }
   }
+
   textarea {
     resize: none;
   }
   &-field {
+    --pos-value: 10px;
     @include s3;
     color: $f-white;
     width: 100%;
@@ -26,6 +28,7 @@
     background-color: $ui-input;
     border: none;
     outline: none;
+    transition: .3s;
     padding: 26px 16px;
     @media (min-width: 600px) {
       padding: 26px 24px;
@@ -33,10 +36,25 @@
     @media (min-width: 1336px) {
       padding: 26px 40px;
     }
-    &.valid ~ label {
-      top: 18px;
+    &:not(.invalid):focus {
+      padding-top: calc(26px + var(--pos-value));
+      padding-bottom: calc(26px - var(--pos-value));
+    }
+    &:focus ~ label {
       font-size: 12px;
       line-height: 16px;
+      color: $f-white;
+      opacity: 0.5;
+      top: calc(16px + var(--pos-value));
+    }
+    &.valid {
+      padding-top: calc(26px + var(--pos-value));
+      padding-bottom: calc(26px - var(--pos-value));
+      & ~ label {
+        top: calc(16px + var(--pos-value));
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
     &.invalid ~ label {
       top: 18px;
@@ -57,13 +75,6 @@
       @media (min-width: 1336px) {
         left: 40px;
       }
-    }
-    &:focus ~ label {
-      top: 18px;
-      font-size: 12px;
-      line-height: 16px;
-      color: $f-white;
-      opacity: 0.5;
     }
   }
   &.form__file {
@@ -116,6 +127,7 @@
     }
   }
   &-label {
+    --pos-value: 10px;
     @include s3;
     color: $f-white;
     transition: 0.3s all ease;

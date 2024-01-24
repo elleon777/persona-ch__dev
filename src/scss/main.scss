@@ -1,87 +1,3 @@
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes fadeInHide {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fadeInUpHide {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-@keyframes fadeRightLeftIn {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes fadeRightLeftOut {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-}
-@keyframes fadeLeftRightIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes fadeLeftRightOut {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-}
-@keyframes reveal {
-  from {
-    clip-path: inset(0 0 0 100%);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
 html {
   height: 100%;
 }
@@ -167,8 +83,9 @@ img {
 a {
   text-decoration: none;
   color: $f-primary;
-  @media (min-width: 992px) {
+  @media (hover: hover) {
     &:hover {
+      text-decoration: none;
       color: $f-hover;
     }
   }
@@ -188,7 +105,7 @@ button {
   background: transparent;
   color: inherit;
   font: inherit;
-  line-height: normal;
+  line-height: normal !important;
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
@@ -248,14 +165,23 @@ h5 {
   }
 }
 .ellipsis {
+  position: relative;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
-  & + .read-more {
+  line-clamp: var(--lineClampCount);
+  -webkit-line-clamp: var(--lineClampCount);
+  max-height: calc(var(--lineHeight) * var(--lineClampCount));
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), -webkit-box-orient 0s 1s;
+  &:not(.open) + .read-more {
     svg {
       transform: none;
     }
+  }
+  &.open {
+    max-height: 100rem;
+    transition: max-height 0.3s cubic-bezier(0.9, 0, 0.8, 0.2);
   }
 }
 
@@ -495,8 +421,8 @@ ul {
     position: fixed;
     right: 0;
     bottom: 0;
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     font-size: 0;
     background-color: $ui-primary;
     background-repeat: no-repeat;
@@ -504,6 +430,7 @@ ul {
     background-position: center;
     z-index: 999;
     margin-bottom: 0 !important;
+
     &--call {
       background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.75 2.25H5.25V1H6.75V2.25H14.75V1H16.25V2.25H18.75H19.5V3V7V9.5H18V7.75H3.5V19.75H8.58529V21.25H2.75H2V20.5V7V3V2.25H2.75ZM18 3.75V6.25H3.5V3.75H5.57353H6H15.5H15.9265H18ZM18.5691 9.99989L19.0994 10.5302L21.3721 12.8029L21.9025 13.3333L21.3721 13.8636L14.5539 20.6818L14.4066 20.8291L14.2044 20.8793L11.1808 21.6302L9.9719 21.9304L10.2721 20.7216L11.023 17.698L11.0732 17.4957L11.2206 17.3484L18.0387 10.5302L18.5691 9.99989ZM12.4286 18.2617L12.0281 19.8742L13.6406 19.4738L17.9478 15.1666L16.7358 13.9545L12.4286 18.2617ZM19.7811 13.3333L19.0085 14.1059L17.7964 12.8939L18.5691 12.1212L19.7811 13.3333Z' fill='white'/%3E%3C/svg%3E%0A");
     }
@@ -521,13 +448,13 @@ ul {
       }
     }
     &.open {
-      // &:not(.fixed-btn--call) {
-      //   background-image: none;
-      // }
+      &:not(.stretched) {
+        // position: static;
+      }
       &,
       & > * {
         animation: reveal 0.5s forwards;
-        position: static;
+
         width: 100%;
         background-position: 16px;
         font-size: inherit;
@@ -563,6 +490,10 @@ ul {
     .link-text {
       transition: none;
     }
+  }
+  @media (max-width: 480px) {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -664,11 +595,21 @@ ul {
 .fancybox {
   &__container {
     padding: 50px 16px 16px;
-    @media (min-width: 992px) {
-      padding: 100px;
-    }
+
     --fancybox-bg: #0b133d;
-    .is-left,
+    @media (min-width: 1024px) {
+      padding: 80px 40px;
+    }
+    @media (min-width: 1600px) {
+      padding: 100px 40px;
+    }
+    .is-left {
+      padding: 40px;
+      @media (max-width: 991px) {
+        position: absolute;
+        padding: 16px 0;
+      }
+    }
     .is-right {
       padding: 40px;
       @media (max-width: 991px) {
@@ -676,10 +617,45 @@ ul {
         padding: 16px;
       }
     }
+    .f-button {
+      --f-button-width: 32px;
+      --f-button-height: 32px;
+      svg {
+        stroke-width: 0.5;
+      }
+      &:active {
+        --f-button-active-bg: transparent;
+        color: #3f7d31;
+
+        path {
+          stroke: #3f7d31;
+        }
+      }
+      &:focus-visible {
+        outline: none;
+      }
+      @media (hover: hover) {
+        path {
+          transition: 0.3s;
+        }
+        &:hover {
+          --f-button-hover-color: #49ac32;
+          --f-button-hover-bg: transparent;
+          path {
+            stroke: #49ac32;
+          }
+          rect {
+            fill: #49ac32;
+          }
+        }
+      }
+    }
     @media (max-width: 991px) {
       .fancybox__nav {
         --f-button-next-pos: 0;
         --f-button-prev-pos: auto;
+        --f-button-width: 32px;
+        --f-button-height: 32px;
       }
       .is-horizontal .fancybox__nav .f-button.is-prev,
       .is-horizontal .fancybox__nav .f-button.is-next {
@@ -694,6 +670,8 @@ ul {
       .fancybox__toolbar.is-absolute,
       .is-compact .fancybox__toolbar {
         position: initial;
+        --f-button-width: 32px;
+        --f-button-height: 32px;
       }
       .fancybox__toolbar__column.is-left {
         bottom: 0;
@@ -708,6 +686,9 @@ ul {
     @include s2;
   }
   &__toolbar {
+    font-family: "TTFirsNeue", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+      "Helvetica Neue", sans-serif;
     --f-button-svg-width: 32px;
     --f-button-svg-height: 32px;
     --f-button-bg: transparent;
@@ -770,12 +751,19 @@ ul {
     width: max-content;
     cursor: pointer;
     transition: 0.3s;
-    &:hover {
-      color: $f-hover;
+    margin-bottom: 24px;
+    @media (hover: hover) {
+      &:hover {
+        color: $f-hover;
+      }
     }
-    &::before {
-      @include border-dots;
-    }
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-color: $f-primary;
+    text-underline-offset: 6px;
+    // &::before {
+    //   @include border-dots;
+    // }
   }
   &__tel {
     &-item {
@@ -831,7 +819,10 @@ ul {
     &-content {
       margin-top: 16px;
       display: flex;
-      gap: 40px;
+      gap: 12px;
+      @media (min-width: 1366px) {
+        gap: 40px;
+      }
       svg {
         width: 40px;
         height: 40px;
@@ -1075,8 +1066,10 @@ ul {
       @media (min-width: 1336px) {
         padding: 26px 40px;
       }
-      &:hover {
-        color: $f-primary;
+      @media (hover: hover) {
+        &:hover {
+          color: $f-primary;
+        }
       }
     }
   }

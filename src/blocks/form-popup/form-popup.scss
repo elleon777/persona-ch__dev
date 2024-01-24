@@ -16,8 +16,8 @@
   background-color: $ui-dark;
   padding-top: 24px;
   z-index: 9999;
+  @include blur(30px);
   @media (max-width: 991px) {
-    @include blur(40px);
   }
   &--show {
     animation: fadeIn 1s both;
@@ -42,9 +42,11 @@
         fill: $ui-primary;
         transition: 0.3s;
       }
-      &:hover {
-        rect {
-          fill: $ui-hover;
+      @media (hover: hover) {
+        &:hover {
+          rect {
+            fill: $ui-hover;
+          }
         }
       }
     }
@@ -80,7 +82,6 @@
     height: 100%;
   }
   &__text {
-    
   }
   &__title {
     @include h2;
@@ -94,6 +95,12 @@
   &__desc {
     @include s2;
     color: $f-white !important;
+    @supports (text-wrap: balance) {
+      text-wrap: balance;
+    }
+    @supports not (text-wrap: balance) {
+      max-width: 700px;
+    }
     @media (max-width: 991px) {
       @include font(16px, 20px, 400);
     }

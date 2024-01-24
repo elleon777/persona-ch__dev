@@ -20,18 +20,28 @@ mixin form-enroll(title ,mods)
 
   .form-enroll(class=allMods)&attributes(attributes)
     .form-enroll__container
-      .form-enroll__text
-        .form-enroll__title
-          span= title
-          block
-        .form-enroll__desc Заполните данные и наш менеджер свяжется с вами для согласования записи на прием
-      form.form(action="")
-        +input("form__name", "text", "Имя и фамилия", "Укажите имя и фамилию", true)
-        +input("form__tel", "tel", "Телефон", "Укажите телефон", true)
-        .input(class="form__textarea")
-          textarea.input-field(id="form__textarea" required)
-          label.input-label(for="form__textarea") Интересующая процедура или специалист
-          span.input-alert Укажите интересующую процедуру или специалиста
-        +form-checkbox()
-        +form-send()
-
+      .form-enroll__inner
+        .form-enroll__text
+          .form-enroll__title
+            span= title
+            block
+          .form-enroll__desc Заполните данные и наш менеджер свяжется с вами для согласования записи на&nbsp;прием
+        form.form(action="")
+          +input("form__name", "text", "Имя и фамилия", "Укажите имя и фамилию", true)
+          +input("form__tel", "tel", "Телефон", "Укажите телефон", true)
+          .input(class="form__textarea")
+            textarea.input-field(id="form__textarea" required)
+            label.input-label(for="form__textarea") Интересующая процедура или специалист
+            span.input-alert Укажите интересующую процедуру или специалиста
+          +form-checkbox()
+          +form-send()
+      .form-popup
+        .form-popup__container.container
+          .form-popup__wrapper
+            button.form-popup__close
+              svg(width='32' height='32' viewbox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+                rect(x='4' y='27' width='32' height='2' transform='rotate(-45 4 27)' fill='#FFFFFF')
+                rect(x='5' y='4' width='32' height='2' transform='rotate(45 5 4)' fill='#FFFFFF')
+            .form-popup__success
+              .form-popup__success-title Запрос успешно отправлен
+              .form-popup__success-desc В случае необходимости наш менеджер свяжется с вами для уточнения деталей.

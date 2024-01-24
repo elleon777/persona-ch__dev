@@ -21,6 +21,7 @@ mixin price(obj, mods)
   ul.price(class=allMods)&attributes(attributes)
     each value, index in obj
       li.price__item
-        span.price__item-prop= index
         .dot-leaders
+        div.price__item-prop
+          span= index
         span.price__item-value= value

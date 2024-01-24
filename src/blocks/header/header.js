@@ -6,17 +6,24 @@ $(function () {
       ? "header--dark"
       : "header--white";
     $(document).off("click", ".header__dropdown-btn");
+
     return () => {
       $(document).on("click", ".header__dropdown-btn", function () {
+        const delay = $("header").hasClass("header--open") ? 400 : 0;
         if (
           $(".header__dropdown-btn").hasClass("active") &&
           !$(this).hasClass("active")
         ) {
-          $(".header__dropdown-btn").removeClass("active");
-          $(".header__dropdown").hide();
+          $(".header__dropdown").slideUp();
+          setTimeout(() => {
+            $(".header__dropdown-btn").not($(this)).removeClass("active");
+          }, 400);
         }
         // Если меню открыто
-        if ($(".header__dropdown").is(":visible")) {
+        if (
+          $(".header__dropdown").is(":visible") &&
+          $(this).hasClass("active")
+        ) {
           closeVisibleDropDownDesktop(initialClass);
           return;
         }
@@ -25,8 +32,9 @@ $(function () {
           $(".header").removeClass("header--dark").addClass("header--white");
           $(".header").css("background", "#f2f6ff");
         }
-
-        $(this).next().slideToggle().css("display", "grid");
+        setTimeout(() => {
+          $(this).next().slideDown().css("display", "grid");
+        }, delay);
         $(".header").addClass("header--open");
         $(this).toggleClass("active");
 
@@ -56,6 +64,7 @@ $(function () {
     });
   }
   function closeVisibleDropDownDesktop(initialClass) {
+    console.log("closevisible");
     $(".header__dropdown").slideUp();
     setTimeout(() => {
       if ($(".header").hasClass("header--white")) {
@@ -104,30 +113,44 @@ $(function () {
         .addClass("fixed-btn")
         .addClass("fixed-btn--call");
     }
-
+    const fixedBtnHeight = $(".fixed-btn").height();
     $(".fixed-btn").appendTo("body");
+    $(".footer").css("padding-bottom", fixedBtnHeight + "px");
     const options = {
-      rootMargin: "0px",
-      threshold: [0.99],
+      rootMargin: `0px 0px ${fixedBtnHeight - 20}px 0px`,
+      threshold: [1],
     };
+
+    if (window.location.pathname.indexOf("operations") === 1) {
+      $(".fixed-btn").addClass("stretched").addClass("open");
+    }
+
     const trueCallback = function (entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          $(".fixed-btn").addClass("open");
+          if (window.location.pathname.indexOf("operations") === 1) {
+            $(".fixed-btn").removeClass("stretched");
+          } else {
+            $(".fixed-btn").addClass("open");
+          }
+
           if ($(".footer").hasClass("footer--dark")) {
             $("body").css("background", "#0b133d");
           } else {
             $("body").css("background", "#f2f6ff");
           }
         } else {
-          $(".fixed-btn").removeClass("open");
+          if (window.location.pathname.indexOf("operations") === 1) {
+            $(".fixed-btn").addClass("stretched");
+          } else {
+            $(".fixed-btn").removeClass("open");
+          }
           $("body").removeAttr("style");
         }
       });
     };
     const observer = new IntersectionObserver(trueCallback, options);
     const target = $(".footer")[0];
-
     observer.observe(target);
   }
   function observerChangeThemeSeeAlso() {
@@ -135,7 +158,6 @@ $(function () {
       const observer = new IntersectionObserver(
         ([e]) => {
           if (!e.isIntersecting) {
-            console.log("see also");
             if (!$(".header").hasClass("header--open")) {
               $(".header")
                 .addClass("header--dark")
@@ -165,13 +187,16 @@ $(function () {
   function headerDesktopMenuScrollFade() {
     $(".header__bottom .tabs__content-block").on("scroll", function () {
       const scrollEnd =
-        this.scrollHeight === this.scrollTop + this.clientHeight;
+        this.scrollHeight <=
+        this.scrollTop + this.clientHeight;
+      let timerScroll = null;
       if (scrollEnd) {
         $(this).parent().addClass("scroll-end");
-        setTimeout(() => {
+        timerScroll = setTimeout(() => {
           $(this).parent().css("z-index", -1);
         }, 300);
       } else {
+        clearTimeout(timerScroll);
         $(this).parent().removeClass("scroll-end");
         $(this).parent().removeAttr("style");
       }
@@ -185,7 +210,7 @@ $(function () {
   } else {
     clickHeaderDropdownMobile();
   }
-  if ($(window).width() <= 1024) {
+  if ($(window).width() <= 1280) {
     stretchHeaderCall();
   }
 

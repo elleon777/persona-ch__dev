@@ -13,7 +13,24 @@
   @include blur(20px);
   z-index: 1000;
   display: none;
-
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100 * var(--vh, 1vh));
+  &::-webkit-scrollbar {
+    width: 4px;
+    padding: 5px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $ui-white;
+    border-radius: 4px;
+    padding: 5px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #cfd6e6;
+    border-radius: 4px;
+  }
   &--show {
     animation: fadeIn 1s both;
   }
@@ -23,9 +40,10 @@
   &__wrapper {
     @include container;
     width: 100%;
-    margin: 85px auto 0;
+    padding-top: 85px;
+
     @media (max-width: 991px) {
-      margin: 24px auto 0;
+      padding-top: 24px;
     }
   }
   &__inner {
@@ -121,47 +139,41 @@
         background: #f5f8ff;
         &-block {
           padding: 0 40px;
-          overflow-y: auto;
-          overflow-x: hidden;
-          max-height: 64vh;
-          &::-webkit-scrollbar {
-            width: 4px;
-            padding: 5px;
-          }
-          /* Track */
-          &::-webkit-scrollbar-track {
-            background: $ui-white;
-            border-radius: 4px;
-            padding: 5px;
-          }
-
-          /* Handle */
-          &::-webkit-scrollbar-thumb {
-            background: #cfd6e6;
-            border-radius: 4px;
-          }
           @media (max-width: 991px) {
             padding: 0 16px;
           }
+
           .pagination {
             margin: 0 -40px;
             @media (max-width: 991px) {
               margin: 0 -16px;
             }
           }
+          .link--button {
+            padding: 16px 0;
+            @media (min-width: 600px) {
+              padding: 24px 0;
+            }
+            @media (min-width: 1024px) {
+              padding: 32px 0;
+            }
+          }
         }
         .link {
           border-bottom: 1px solid rgba(168, 195, 234, 0.5);
-          &:hover {
-            .link-text {
-              color: $f-primary;
-            }
-            svg {
-              path {
-                fill: $f-primary;
+          @media (hover: hover) {
+            &:hover {
+              .link-text {
+                color: $f-primary;
+              }
+              svg {
+                path {
+                  fill: $f-primary;
+                }
               }
             }
           }
+
           &-text {
             @include s2;
             color: $f-black;

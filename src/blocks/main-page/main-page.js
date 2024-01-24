@@ -1,7 +1,9 @@
-// import ready from 'Utils/documentReady.js';
 import $ from "jquery";
-import Swiper, { Mousewheel, EffectFade } from "swiper";
-import debounce from "../../js/utils/debounce";
+import Swiper, { Mousewheel, EffectCreative } from "swiper";
+import debounce from "Utils/debounce";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { TweenMax } from "gsap/gsap-core";
 
 $(function () {
   $(window).on("load", function () {
@@ -16,49 +18,94 @@ $(function () {
 
   const descResponce = $(window).width() > 991;
   function initSwiperMainPage() {
-    return new Swiper(".main-page", {
-      modules: [Mousewheel, EffectFade],
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true,
-      },
+    const slider = document.querySelector(".main-page");
+    const interleaveOffset = 1;
+    if (descResponce) {
+      $(".main-page__wrapper").wrapInner("<div class='main-page__wrap'></div>");
+    }
+    return new Swiper(slider, {
+      modules: [Mousewheel],
+      direction: "vertical",
       slidesPerView: 1,
       spaceBetween: 0,
       mousewheel: false,
-      speed: 300,
+      speed: 1000, //800
       draggable: false,
       allowTouchMove: false,
+      watchSlidesProgress: true,
       on: {
-        slideChange: function () {
+        progress: function () {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            let slideProgress = swiper.slides[i].progress;
+            let innerOffset = swiper.height * interleaveOffset;
+            let innerTranslate = slideProgress * innerOffset;
+            gsap.set(swiper.slides[i].querySelector(".main-page__wrap"), {
+              y: innerTranslate,
+            });
+          }
+        },
+        touchStart: function () {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = "";
+          }
+        },
+        setTransition: function (_, speed) {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = speed + "ms";
+            swiper.slides[i].querySelector(
+              ".main-page__wrap"
+            ).style.transition = speed + "ms";
+          }
+        },
+        slideChange: function (swiper) {
+          const slide = $(".main-page").find(".swiper-slide");
+          const lastPrev = slide.eq(3);
+
           if (mainPage.activeIndex === 4) {
-            $(".main-page")
-              .find(".swiper-slide")
-              .eq(mainPage.previousIndex)
-              .css("opacity", "0.9");
-            return;
+            lastPrev.css("overflow", "visible");
+          } else {
+            lastPrev.css("overflow", "hidden");
           }
         },
         slideChangeTransitionEnd: function () {
-          animationAsideItems();
-          $(".fadeInUpHide").removeClass("fadeInUpHide");
-          mainPage.activeIndex !== 4 &&
+          if (mainPage.activeIndex !== 4) {
+            $(".fadeInUpHide").removeClass("fadeInUpHide");
             $(".fadeInHide").removeClass("fadeInHide");
+          }
         },
       },
     });
   }
+
   let mainPage = initSwiperMainPage();
 
-  const slidePrevDebounce = debounce(() => {
-    mainPage.slidePrev();
-  }, mainPage.originalParams.speed);
+  const slidePrevDebounce = debounce(
+    () => {
+      animationBeforeSlideChange();
+      setTimeout(() => {
+        mainPage.slidePrev();
+      }, mainPage.originalParams.speed);
+    },
+    mainPage.originalParams.speed,
+    true
+  );
 
-  const slideNextDebounce = debounce(() => {
-    if (mainPage.activeIndex === 4) {
-      return;
-    }
-    mainPage.slideNext();
-  }, mainPage.originalParams.speed);
+  const slideNextDebounce = debounce(
+    () => {
+      if (mainPage.activeIndex === 4) {
+        return;
+      }
+      animationBeforeSlideChange();
+      setTimeout(() => {
+        mainPage.slideNext();
+      }, mainPage.originalParams.speed);
+    },
+    mainPage.originalParams.speed,
+    true
+  );
 
   function destroySwiperMainPage() {
     if (descResponce) {
@@ -93,13 +140,15 @@ $(function () {
   }
 
   function animationAsideItems() {
-    $(
-      $(".main-page__wrapper.swiper-slide-active")
-        .find(".main-page__right-item")
-        .get()
-        .reverse()
-    ).each(function (index) {
-      $(this).css("animation-delay", `${0.4 + index / 10}s`);
+    $(".main-page__wrapper").each(function () {
+      $($(this).find(".main-page__right-item").get().reverse()).each(function (
+        index
+      ) {
+        $(this).css(
+          "animation-delay",
+          `${mainPage.originalParams.speed / 1000 + index / 10}s`
+        );
+      });
     });
   }
 
@@ -116,7 +165,7 @@ $(function () {
         }, 500);
       });
 
-    $(".swiper-slide-active").find(".video-bg")[0].play();
+    $(".swiper-slide-active").find(".video-bg")[0]?.play();
   }
 
   function videoController() {
@@ -158,10 +207,36 @@ $(function () {
       $(this).find(".main-page__left").css("margin-bottom", bottomDistance);
     });
   }
-
+  function gsapMobileParallax() {
+    gsap.registerPlugin(ScrollTrigger);
+    let getRatio = (el) =>
+      window.innerHeight / (window.innerHeight + el.offsetHeight);
+    gsap.utils.toArray(".main-page__wrapper").forEach((section, i) => {
+      section.bg = section.querySelector(".main-page__mobile-bg");
+      gsap.fromTo(
+        section.bg,
+        {
+          backgroundPosition: () =>
+            i ? `50% ${window.innerHeight * getRatio(section)}px` : "50% 0px",
+        },
+        {
+          backgroundPosition: () =>
+            `50% ${-window.innerHeight * (1 - getRatio(section))}px`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: () => (i ? "top bottom" : "top top"),
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true, // to make it responsive
+          },
+        }
+      );
+    });
+  }
   if ($(".main-page").length) {
     let isDestroyed = false;
-    
+
     $(window).on("resize", function () {
       if (descResponce) {
         isDestroyed = deInitSwiperMainPage();
@@ -178,17 +253,18 @@ $(function () {
       if (mainPage.activeIndex === 0 && isScrollingDown > 0) {
         return;
       }
-      animationBeforeSlideChange();
+
       if (isScrollingDown > 0) {
-        setTimeout(() => {
-          slidePrevDebounce();
-        }, mainPage.originalParams.speed);
+        slidePrevDebounce();
       } else {
-        setTimeout(() => {
-          slideNextDebounce();
-        }, mainPage.originalParams.speed);
+        slideNextDebounce();
       }
     });
+    if (descResponce) {
+      animationAsideItems();
+    } else {
+      gsapMobileParallax();
+    }
     alignLeftAndRightMainPage();
     videoController();
   }

@@ -518,6 +518,17 @@ exports.build = series(
   parallel(copyImg, writeSassImportsFile, writeJsRequiresFile),
   parallel(compileSass, buildJs)
 );
+exports.buildjs = series(
+  parallel(clearBuildDir),
+  parallel(writeJsRequiresFile),
+  parallel(buildJs)
+);
+exports.buildcss = series(
+  parallel(clearBuildDir, writePugMixinsFile),
+  parallel(compilePugFast, copyAssets, generateSvgSprite, generatePngSprite),
+  parallel(copyImg, writeSassImportsFile, writeJsRequiresFile),
+  parallel(compileSass, buildJs)
+);
 
 exports.default = series(
   parallel(clearBuildDir, writePugMixinsFile),
